@@ -18,6 +18,13 @@ const Forms = lazy(() => import('../../DemoPages/Forms'));
 const Tables = lazy(() => import('../../DemoPages/Tables'));
 const Homepage = lazy(()=> import('../../DemoPages/Homepage'));
 const Product = lazy(()=> import('../../DemoPages/ProductTable'))
+const Novel = lazy(()=> import('../../DemoPages/Homepage/Categories/Novel'))
+const Family = lazy(()=> import('../../DemoPages/Homepage/Categories/Family'))
+const Academic = lazy(()=> import('../../DemoPages/Homepage/Categories/Academic'))
+const Comic = lazy(()=> import('../../DemoPages/Homepage/Categories/Comic'))
+
+
+
 const AppMain = () => {
 
     return (
@@ -215,6 +222,22 @@ const AppMain = () => {
                 </div>
             }>
                 <Route path="/dashboards" component={Dashboards}/>
+            </Suspense>
+
+            <Suspense fallback={
+                <div className="loader-container">
+                    <div className="loader-container-inner">
+                        <div className="text-center">
+                            <Loader type="pacman"/>
+                        </div>
+                        <h4 className="mt-5">
+                            Let's to Homepage
+                            <small>Loading page, Please be patient!</small>
+                        </h4>
+                    </div>
+                </div>
+            }>
+                <Route path="/novel" component={Novel}/>
             </Suspense>
 
             <Route exact path="/" render={() => (

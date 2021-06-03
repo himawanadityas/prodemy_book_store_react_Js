@@ -1,4 +1,5 @@
 import React, {Fragment} from 'react';
+import {Link} from 'react-router-dom'
 
 import {
     UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Popover,
@@ -171,7 +172,11 @@ class MegaMenu extends React.Component {
                                     <DropdownItem>Academic</DropdownItem>
                                     <DropdownItem>Family</DropdownItem>
                                     <DropdownItem>Comic</DropdownItem>
-                                    <DropdownItem>Novel</DropdownItem>
+                                    <Link to="/novel">
+                                        <DropdownItem>Novel</DropdownItem>
+                                    </Link>
+                                    {/*<DropdownItem>Novel</DropdownItem>*/}
+
                                 </PerfectScrollbar>
                             </div>
                             <Nav vertical>

@@ -1,5 +1,6 @@
-import React, {Fragment, Component} from 'react';
+import React, {Fragment, Component, useState, useEffect} from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
+import axios from "axios";
 
 import AppHeader from '../../Layout/AppHeader/';
 import AppSidebar from '../../Layout/AppSidebar/';
@@ -26,6 +27,13 @@ const getId = (index) => {
     console.log(index)
 }
 const Homepage = () => {
+    const [listDataBook, setListDataBook] = useState([])
+
+
+    useEffect(() => {
+        axios.get('http://localhost:1212/api/book').then(res => {setListDataBook(res.data)}).catch()
+    })
+
     return (
         <Fragment>
             <CSSTransitionGroup
@@ -45,9 +53,9 @@ const Homepage = () => {
                             breadcrumbPaths={[]}
                         />
                         <Row>
-                            {AllBook.map((data, index) => (
-                                <ProductCard key={index} title={data.title} subtitle={data.subtitle}
-                                             image={data.image} handleClick={() => {getId(data.title)}}/>
+                            {listDataBook.map((data, index) => (
+                                <ProductCard key={index} title={data.judulBuku} subtitle={data.namaPengarang}
+                                             image={data.image} handleClick={() => {getId(data.id)}}/>
                             ))}
                         </Row>
 

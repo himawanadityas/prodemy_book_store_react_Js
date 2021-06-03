@@ -24,8 +24,10 @@ class ProductTable extends React.Component {
             productData: [],
             modalEdit: false,
             modalAdd: false,
-            detailProduct : null
-
+            // detailProduct : null
+            judulBuku: "",
+            hargaBuku: "",
+            idBuku:null
         };
         this.toggleEdit = this.toggleEdit.bind(this);
         this.toggleAdd = this.toggleAdd.bind(this);
@@ -39,13 +41,20 @@ class ProductTable extends React.Component {
     toggleEdit(val) {
         this.setState({
             modalEdit: !this.state.modalEdit,
+            idBuku: val.id
+
         });
+        console.log(val)
     }
 
     toggleAdd() {
         this.setState({
             modalAdd: !this.state.modalAdd,
         });
+    }
+
+    deleteData(id){
+        axios.delete('http://localhost:1212/api/book/'+id).then().catch()
     }
 
     render() {
@@ -121,7 +130,7 @@ class ProductTable extends React.Component {
                                                     Cell: row => (
                                                         <div className="d-block w-100 text-center">
                                                             <Button outline className="mb-2 mr-2 btn-pill" color="primary" onClick={(e)=>{this.toggleEdit(row.original)}}>Edit</Button>
-                                                            <Button outline className="mb-2 mr-2 btn-pill" color="danger">Delete</Button>
+                                                            <Button outline className="mb-2 mr-2 btn-pill" color="danger" onClick={(e)=>{this.deleteData(row.original.id)}}>Delete</Button>
                                                         </div>
                                                     )
                                                 }
@@ -133,7 +142,7 @@ class ProductTable extends React.Component {
                             </CardBody>
                         </div>
                     </Card>
-                    <EditProduct toggle={this.toggleEdit} modal={this.state.modalEdit}/>
+                    <EditProduct toggle={this.toggleEdit} modal={this.state.modalEdit} id={this.state.idBuku}/>
                     <AddProduct toggle={this.toggleAdd} modal={this.state.modalAdd}/>
                 </CSSTransitionGroup>
             </Fragment>

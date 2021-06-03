@@ -4,6 +4,7 @@ import bg1 from "../../assets/utils/images/dropdown-header/abstract1.jpg";
 import ButtonsIcons from "../Elements/Button/Icons";
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import DetailProductCard from "./DetailProductCard";
+import {IoIosCart} from "react-icons/io";
 
 const ProductCard = (props) => {
     const [modal, setModal] = useState(false)
@@ -24,7 +25,9 @@ const ProductCard = (props) => {
                     </CardBody>
                     <CardFooter>
                         <div className='align-content'>
-                            <Button className="btn btn-success" onClick={props.handleClick}>Button</Button>
+                            <Button className="btn btn-success" onClick={props.handleClick}>
+                                <IoIosCart size={20}/>
+                            </Button>
                         </div>
                     </CardFooter>
                 </Card>
