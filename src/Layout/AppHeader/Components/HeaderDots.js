@@ -41,6 +41,7 @@ import Tabs from 'react-responsive-tabs';
 import ChatExample from './TabsContent/ChatExample';
 import TimelineEx from './TabsContent/TimelineExample';
 import SysErrEx from './TabsContent/SystemExample';
+import CartModal from "./CartModal";
 
 const data = [
     {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
@@ -91,15 +92,21 @@ class HeaderDots extends React.Component {
         super(props);
         this.state = {
             // active: false,
+            modal: false
         };
-
+        this.toggle = this.toggle.bind(this);
+    }
+    toggle() {
+        this.setState({
+            modal: !this.state.modal
+        });
     }
 
     render() {
         return (
             <Fragment>
                 <div className="header-dots">
-                    <div className="icon-wrapper icon-wrapper-alt" onClick={clickMe}>
+                    <div className="icon-wrapper icon-wrapper-alt" onClick={this.toggle}>
                         <div className="icon-wrapper-bg"/>
                         {/*<IoIosGrid color="#3f6ad8" fontSize="23px"/>*/}
                         <IoIosCart color="#985534" fontSize="23px"/>
@@ -114,7 +121,7 @@ class HeaderDots extends React.Component {
                         <IoIosContact color="#985534" fontSize="23px"/>
                         <div className="badge badge-dot badge-dot-sm badge-danger">Notifications</div>
                     </div>
-
+                    <CartModal toggle={this.toggle} modal={this.state.modal} />
 
                     {/*<UncontrolledDropdown>*/}
                     {/*    <DropdownToggle className="p-0 mr-2" color="link">*/}

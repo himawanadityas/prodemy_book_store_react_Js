@@ -21,7 +21,10 @@ import Footer from "../Components/GuidedTours/Examples/Footer";
 import ProductCard from "./ProductCard";
 import PageTitle from "../../Layout/AppMain/PageTitle";
 import AllBook from "./BookData";
-
+const getId = (index) => {
+    console.log('>> Get Index >>')
+    console.log(index)
+}
 const Homepage = () => {
     return (
         <Fragment>
@@ -42,8 +45,9 @@ const Homepage = () => {
                             breadcrumbPaths={[]}
                         />
                         <Row>
-                            {AllBook.map((book, index) => (
-                                <ProductCard key={index} title={book.title} subtitle={book.subtitle} image={book.image}/>
+                            {AllBook.map((data, index) => (
+                                <ProductCard key={index} title={data.title} subtitle={data.subtitle}
+                                             image={data.image} handleClick={() => {getId(data.title)}}/>
                             ))}
                         </Row>
 
