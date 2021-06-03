@@ -15,37 +15,44 @@ import PageTitle from "../../Layout/AppMain/PageTitle";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import Header from "../../Layout/AppHeader";
 import EditProduct from "./EditProduct";
+import AddProduct from "./AddProduct";
 
 class ProductTable extends React.Component {
     constructor() {
         super();
         this.state = {
             productData: [],
-            modal: false,
+            modalEdit: false,
+            modalAdd: false,
             detailProduct : null
 
         };
-        this.toggle = this.toggle.bind(this);
+        this.toggleEdit = this.toggleEdit.bind(this);
+        this.toggleAdd = this.toggleAdd.bind(this);
     }
 
     componentDidMount() {
         axios.get("http://localhost:1212/api/book")
             .then(res => {this.setState({productData:res.data})}).catch();
     }
-    toggle(val) {
-        this.setState({
-            modal: !this.state.modal,
-            detailProduct: val
-        });
-        console.log(this.state.detailProduct)
 
+    toggleEdit(val) {
+        this.setState({
+            modalEdit: !this.state.modalEdit,
+        });
     }
+
+    toggleAdd() {
+        this.setState({
+            modalAdd: !this.state.modalAdd,
+        });
+    }
+
     render() {
         const {productData} = this.state;
         console.log(productData)
         return (
             <Fragment>
-
                 <PageTitle
                     heading="Product Table"
                     subheading="Table for update the product"
@@ -63,6 +70,7 @@ class ProductTable extends React.Component {
 
                     <Card className="main-card m-5">
                         <div className="mb-3">
+                            <Button outline className="mb-2 mr-2 btn-pill" color="primary" onClick={(e)=>{this.toggleAdd()}}>Add</Button>
                             <CardBody>
                                 <ReactTable
                                     data={productData}
@@ -112,20 +120,21 @@ class ProductTable extends React.Component {
                                                     filterable: false,
                                                     Cell: row => (
                                                         <div className="d-block w-100 text-center">
-                                                            <Button outline className="mb-2 mr-2 btn-pill" color="primary" onClick={(e)=>{this.toggle(row.original)}}>Edit</Button>
+                                                            <Button outline className="mb-2 mr-2 btn-pill" color="primary" onClick={(e)=>{this.toggleEdit(row.original)}}>Edit</Button>
                                                             <Button outline className="mb-2 mr-2 btn-pill" color="danger">Delete</Button>
                                                         </div>
                                                     )
                                                 }
                                             ]
                                         }]}
-                                    defaultPageSize={10}
+                                    defaultPageSize={5}
                                     className="-striped -highlight"
                                 />
                             </CardBody>
                         </div>
                     </Card>
-                    <EditProduct toggle={this.toggle} modal={this.state.modal} judulBuku={this.state.detailProduct.judulBuku} hargaBuku={this.state.detailProduct.hargaBuku}/>
+                    <EditProduct toggle={this.toggleEdit} modal={this.state.modalEdit}/>
+                    <AddProduct toggle={this.toggleAdd} modal={this.state.modalAdd}/>
                 </CSSTransitionGroup>
             </Fragment>
         )

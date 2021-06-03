@@ -1,21 +1,26 @@
-import React, {useState} from "react";
-import {
-    Button,
-    CustomInput, Form,
-    FormGroup,
-    Input,
-    Label,
-    Modal,
-    ModalBody,
-    ModalFooter,
-    ModalHeader,
-    Table
-} from "reactstrap";
-import {IoIosCart, IoIosSettings} from "react-icons/io";
+import React, {useState} from 'react';
+import axios from "axios";
+import {Button, Form, FormGroup, Input, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
+import {IoIosSettings} from "react-icons/io";
+
+const url = 'http://localhost:1212/';
+
+const AddProduct = (props) => {
+    const [title, setTitle] = useState("")
 
 
-const EditProduct = (props) => {
-    // const [judulBuku, setJudulBuku] = useState("")
+    const addData = {
+        judulBuku: title,
+
+    }
+
+    const saveProduct = () => {
+        const addData = {
+            judulBuku: title
+        }
+
+        axios.post(url, addData).then(res => {console.log(res.data)})
+    }
 
     return (
         <>
@@ -26,16 +31,14 @@ const EditProduct = (props) => {
                             <Form>
                                             <FormGroup>
 
-                                                <Input type="text" name="name" id="name"
-                                                       placeholder="Your Name"/>
+                                                <Input type="text" name="title" id="title"
+                                                       placeholder="Judul Buku"/>
                                             </FormGroup>
-
                                             <FormGroup>
 
                                                 <Input type="text" name="email" id="email"
                                                        placeholder="Harga"/>
                                             </FormGroup>
-
                                         </Form>
                         </ModalBody>
                         <ModalFooter>
@@ -46,6 +49,7 @@ const EditProduct = (props) => {
             </span>
         </>
     )
+
 }
 
-export default EditProduct;
+export default AddProduct;
