@@ -23,61 +23,29 @@ const ProductTable = () => {
     const [modalAdd, setModalAdd] = useState(false)
     const [idBuku, setIdBuku] = useState(null)
 
-    // constructor() {
-    //     super();
-    //     this.state = {
-    //         productData: [],
-    //         modalEdit: false,
-    //         modalAdd: false,
-    //         // detailProduct : null
-    //         judulBuku: "",
-    //         hargaBuku: "",
-    //         idBuku:null
-    //     };
-    //     this.toggleEdit = this.toggleEdit.bind(this);
-    //     this.toggleAdd = this.toggleAdd.bind(this);
-    // }
     useEffect(() => {
         axios.get("http://localhost:1212/api/book")
-            .then(res => {setProductData(res.data)
+            .then(res => {
+                setProductData(res.data)
             }).catch();
     }, [])
 
-    // componentDidMount() {
-    //     axios.get("http://localhost:1212/api/book")
-    //         .then(res => {this.setState({productData:res.data})}).catch();
-    // }
-
-    // toggleEdit(val) {
-    //     this.setState({
-    //         modalEdit: !this.state.modalEdit,
-    //         idBuku: val.id
-    //
-    //     });
-    //     console.log(val)
-    // }
     const toggleAdd = () => {
         setModalAdd(!modalAdd)
     }
+
     const toggleEdit = (val) => {
         setModalEdit(!modalEdit)
         setIdBuku(val)
     }
+
     const deleteData = (id) => {
-        axios.delete('http://localhost:1212/api/book/'+id).then().catch()
+        axios.delete('http://localhost:1212/api/book/' + id).then().catch(err => console.log(err))
     }
 
-
-    // toggleAdd() {
-    //     this.setState({
-    //         modalAdd: !this.state.modalAdd,
-    //     });
-    // }
-
-    // deleteData(id){
-    //     axios.delete('http://localhost:1212/api/book/'+id).then().catch()
-    // }
-
+    const onChangeToggle = () => {
+        setModalAdd(!modalAdd)
+    }
 
     return (
         <Fragment>
@@ -169,7 +137,7 @@ const ProductTable = () => {
                     </div>
                 </Card>
                 <EditProduct toggle={() => {toggleEdit()}} modal={modalEdit} id={idBuku}/>
-                <AddProduct toggle={()=> {toggleAdd()}} modal={modalAdd}/>
+                <AddProduct toggle={() => {toggleAdd()}} modal={modalAdd} onChangeToggle={onChangeToggle}/>
             </CSSTransitionGroup>
         </Fragment>
     )

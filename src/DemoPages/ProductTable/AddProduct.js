@@ -40,16 +40,15 @@ const AddProduct = (props) => {
         axios.post("http://localhost:1212/api/book/save", formData, config)
             .then(res => console.log(res.data)).catch()
 
+        props.onChangeToggle(false)
 
     }
 
     return (
         <>
             <span className="d-inline-block mb-2 mr-2">
-                 <Modal isOpen={modalNonActive ? props.modal : modalNonActive} toggle={props.toggle}>
-                        <ModalHeader toggle={() => {
-                            setModalNonActive(!modalNonActive)
-                        }}><IoIosSettings size={20}/>Edit Product</ModalHeader>
+                 <Modal isOpen={props.modal} toggle={props.toggle}>
+                        <ModalHeader toggle={props.toggle}><IoIosSettings size={20}/>Edit Product</ModalHeader>
                         <ModalBody>
                             <Form>
                                 <FormGroup>
@@ -103,7 +102,7 @@ const AddProduct = (props) => {
                             </Form>
                         </ModalBody>
                         <ModalFooter>
-                            <Button color="link" onClick={()=> {setModalNonActive(!modalNonActive)}}>Cancel</Button>
+                            <Button color="link" onClick={()=> {props.onChangeToggle(false)}}>Cancel</Button>
                             <Button color="primary" onClick={() => {onSubmit()}}>Save</Button>
                         </ModalFooter>
                     </Modal>
