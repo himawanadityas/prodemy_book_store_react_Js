@@ -20,7 +20,7 @@ const Novel = () => {
       axios.get('http://localhost:1212/api/book/page/Novel').then(res => {
           setNovel(res.data)
       })
-    })
+    },[])
 
     return (
         <Fragment>

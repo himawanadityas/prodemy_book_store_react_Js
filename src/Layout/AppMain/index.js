@@ -21,7 +21,7 @@ const Product = lazy(()=> import('../../DemoPages/ProductTable'))
 const Novel = lazy(()=> import('../../DemoPages/Homepage/Categories/Novel'))
 const Family = lazy(()=> import('../../DemoPages/Homepage/Categories/Family'))
 const Academic = lazy(()=> import('../../DemoPages/Homepage/Categories/Academic'))
-const Comic = lazy(()=> import('../../DemoPages/Homepage/Categories/Comic'))
+const Comic = lazy(()=> import('../../DemoPages/Homepage/Categories/Comic'));
 
 
 
@@ -239,6 +239,8 @@ const AppMain = () => {
             }>
                 <Route path="/novel" component={Novel}/>
             </Suspense>
+
+
 
             <Route exact path="/" render={() => (
                 <Redirect to="/dashboards/crm"/>

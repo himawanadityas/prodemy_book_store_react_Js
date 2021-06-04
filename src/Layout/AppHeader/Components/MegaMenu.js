@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 
 import {
     UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Popover,
@@ -44,7 +44,7 @@ class MegaMenu extends React.Component {
             <Fragment>
                 <Nav className="header-megamenu">
                     {/*<NavItem>*/}
-                    {/*    <NavLink href="#" onClick={this.toggle} id="PopoverMegaMenu">*/}
+                    {/*    <NavLink href="/novel" onClick={this.toggle} id="PopoverMegaMenu">*/}
                     {/*        <i className="nav-link-icon pe-7s-gift"> </i>*/}
                     {/*        Mega Menu*/}
                     {/*        <FontAwesomeIcon className="ml-2 opacity-5" icon={faAngleDown}/>*/}
@@ -145,6 +145,11 @@ class MegaMenu extends React.Component {
                     {/*</Popover>*/}
                     <UncontrolledButtonDropdown nav inNavbar>
                         <DropdownToggle nav>
+                            Home
+                        </DropdownToggle>
+                    </UncontrolledButtonDropdown>
+                    <UncontrolledButtonDropdown nav inNavbar>
+                        <DropdownToggle nav>
                             {/*<div className="badge badge-pill badge-danger ml-0 mr-2">4</div>*/}
                             {/*<IoiosLi*/}
                             Categories
@@ -190,57 +195,11 @@ class MegaMenu extends React.Component {
                             </Nav>
                         </DropdownMenu>
                     </UncontrolledButtonDropdown>
-                    <UncontrolledDropdown nav inNavbar>
-                        <DropdownToggle nav>
-                            <i className="nav-link-icon pe-7s-settings"> </i>
-                            Projects
-                            <FontAwesomeIcon className="ml-2 opacity-5" icon={faAngleDown}/>
+                    <UncontrolledButtonDropdown nav inNavbar>
+                        <DropdownToggle nav >
+                            About Us
                         </DropdownToggle>
-                        <DropdownMenu className="dropdown-menu-rounded dropdown-menu-lg rm-pointers">
-                            <div className="dropdown-menu-header">
-                                <div className="dropdown-menu-header-inner bg-success">
-                                    <div className="menu-header-image opacity-1"
-                                         style={{
-                                             backgroundImage: 'url(' + bg3 + ')'
-                                         }}
-                                    ></div>
-                                    <div className="menu-header-content text-left">
-                                        <h5 className="menu-header-title">Overview</h5>
-                                        <h6 className="menu-header-subtitle">Unlimited options</h6>
-                                        <div className="menu-header-btn-pane">
-                                            <Button size="sm" color="dark" className="mr-2">
-                                                Settings
-                                            </Button>
-                                            <Button size="sm" className="btn-icon btn-icon-only" color="warning">
-                                                <i className="pe-7s-config btn-icon-wrapper"> </i>
-                                            </Button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <DropdownItem>
-                                <i className="dropdown-icon lnr-file-empty"> </i>
-                                Graphic Design
-                            </DropdownItem>
-                            <DropdownItem>
-                                <i className="dropdown-icon lnr-file-empty"> </i>
-                                App Development
-                            </DropdownItem>
-                            <DropdownItem>
-                                <i className="dropdown-icon lnr-file-empty"> </i>
-                                Icon Design
-                            </DropdownItem>
-                            <DropdownItem divider/>
-                            <DropdownItem>
-                                <i className="dropdown-icon lnr-file-empty"> </i>
-                                Miscellaneous
-                            </DropdownItem>
-                            <DropdownItem>
-                                <i className="dropdown-icon lnr-file-empty"> </i>
-                                Frontend Dev
-                            </DropdownItem>
-                        </DropdownMenu>
-                    </UncontrolledDropdown>
+                    </UncontrolledButtonDropdown>
                 </Nav>
             </Fragment>
         )
