@@ -3,8 +3,6 @@ import axios from "axios";
 import {Button, Form, FormGroup, Input, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {IoIosSettings} from "react-icons/io";
 
-const url = 'http://localhost:1212/';
-
 const AddProduct = (props) => {
     const [title, setTitle] = useState("")
     const [year, setYear] = useState("")
@@ -15,10 +13,6 @@ const AddProduct = (props) => {
     const [price, setPrice] = useState("")
     const [file, setFile] = useState()
     const [modalNonActive, setModalNonActive] = useState(true)
-
-    useEffect(() => {
-        setModalNonActive(true)
-    },[])
 
     const onSubmit = () => {
 
@@ -46,7 +40,7 @@ const AddProduct = (props) => {
         axios.post("http://localhost:1212/api/book/save", formData, config)
             .then(res => console.log(res.data)).catch()
 
-        setModalNonActive(!modalNonActive)
+
     }
 
     return (
@@ -110,9 +104,7 @@ const AddProduct = (props) => {
                         </ModalBody>
                         <ModalFooter>
                             <Button color="link" onClick={()=> {setModalNonActive(!modalNonActive)}}>Cancel</Button>
-                            <Button color="primary" onClick={() => {
-                                onSubmit()
-                            }}>Save</Button>
+                            <Button color="primary" onClick={() => {onSubmit()}}>Save</Button>
                         </ModalFooter>
                     </Modal>
             </span>
