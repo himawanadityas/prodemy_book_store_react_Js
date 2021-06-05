@@ -12,7 +12,6 @@ const AddProduct = (props) => {
     const [stock, setStock] = useState(0)
     const [price, setPrice] = useState("")
     const [file, setFile] = useState()
-    const [modalNonActive, setModalNonActive] = useState(true)
 
     const onSubmit = () => {
 
@@ -83,7 +82,7 @@ const AddProduct = (props) => {
                                 </FormGroup>
                                 <FormGroup>
                                     <Input type="number" name="stock" id="stock"
-                                           placeholder="Stok" onChange={(e) => {
+                                           placeholder="Stok" min={1} onChange={(e) => {
                                         setStock(e.target.value)
                                     }}/>
                                 </FormGroup>
@@ -109,7 +108,6 @@ const AddProduct = (props) => {
             </span>
         </>
     )
-
 }
 
 export default AddProduct;

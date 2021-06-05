@@ -21,14 +21,18 @@ const ProductTable = () => {
     const [productData, setProductData] = useState([])
     const [modalEdit, setModalEdit] = useState(false)
     const [modalAdd, setModalAdd] = useState(false)
-    const [idBuku, setIdBuku] = useState(null)
+    const [del, setDel] = useState(0)
+    const [dataa, setDataa] = useState({})
+    const [file, setFile] = useState("")
+
 
     useEffect(() => {
         axios.get("http://localhost:1212/api/book")
             .then(res => {
                 setProductData(res.data)
             }).catch();
-    }, [])
+    }, [del])
+
 
     const toggleAdd = () => {
         setModalAdd(!modalAdd)
@@ -36,15 +40,25 @@ const ProductTable = () => {
 
     const toggleEdit = (val) => {
         setModalEdit(!modalEdit)
-        setIdBuku(val)
+        console.log('toggle edit oke', val)
+        axios.get('http://localhost:1212/api/book/' + val).then(res => {
+            setDataa(res.data)
+        })
+        axios.get("http://localhost:1212/api/book/getImage/" + val).then(res => {
+            setFile(res.data)
+        }).catch()
     }
 
     const deleteData = (id) => {
         axios.delete('http://localhost:1212/api/book/' + id).then().catch(err => console.log(err))
+        setDel(id)
     }
 
-    const onChangeToggle = () => {
+    const onChangeToggleAdd = () => {
         setModalAdd(!modalAdd)
+    }
+    const onChangeToggleEdit = () => {
+        setModalEdit(!modalEdit)
     }
 
     return (
@@ -76,23 +90,23 @@ const ProductTable = () => {
                                 columns={[{
                                     columns: [
                                         // {
-                                        //     Header: 'Book',
+                                        //     Header: '1',
                                         //     accessor: 'gambar',
-                                        //     // Cell: row => (
-                                        //     //     <div>
-                                        //     //         <div className="widget-content p-0">
-                                        //     //             <div className="widget-content-wrapper">
-                                        //     //                 <div className="widget-content-left mr-3">
-                                        //     //                     <div className="widget-content-left">
-                                        //     //                         <img width={52}
-                                        //     //                              src='gambar'
-                                        //     //                         />
-                                        //     //                     </div>
-                                        //     //                 </div>
-                                        //     //             </div>
-                                        //     //         </div>
-                                        //     //     </div>
-                                        //     // )
+                                        //     Cell: row => (
+                                        //         <div>
+                                        //             <div className="widget-content p-0">
+                                        //                 <div className="widget-content-wrapper">
+                                        //                     <div className="widget-content-left mr-3">
+                                        //                         <div className="widget-content-left">
+                                        //                             <img width={52}
+                                        //                                  src={"data:image/*;base64"}
+                                        //                             />
+                                        //                         </div>
+                                        //                     </div>
+                                        //                 </div>
+                                        //             </div>
+                                        //         </div>
+                                        //     )
                                         // },
                                         {
                                             Header: 'Book',
@@ -136,8 +150,12 @@ const ProductTable = () => {
                         </CardBody>
                     </div>
                 </Card>
-                <EditProduct toggle={() => {toggleEdit()}} modal={modalEdit} id={idBuku}/>
-                <AddProduct toggle={() => {toggleAdd()}} modal={modalAdd} onChangeToggle={onChangeToggle}/>
+                <EditProduct toggle={() => {
+                    toggleEdit()
+                }} modal={modalEdit} data={dataa} file={file} onChangeToggle={onChangeToggleEdit}/>
+                <AddProduct toggle={() => {
+                    toggleAdd()
+                }} modal={modalAdd} onChangeToggle={onChangeToggleAdd}/>
             </CSSTransitionGroup>
         </Fragment>
     )
