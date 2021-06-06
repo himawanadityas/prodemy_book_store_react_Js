@@ -4,6 +4,7 @@ import {Input} from "reactstrap";
 const CartList = (props) => {
     const [quantity, setQuantity] = useState(null)
     const [subTotal, setSubTotal] = useState(null)
+
     const quantityChange = (value) => {
         setQuantity(value)
         setSubTotal(props.data.hargaBuku * value)

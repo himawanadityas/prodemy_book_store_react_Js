@@ -4,14 +4,10 @@ import {IoIosCart} from "react-icons/io";
 import CartList from "./CartList";
 import axios from "axios";
 
-const Checked = (e, id) => {
-    if(e.target.checked){
-        console.log(id, "Checked")
-    }
-}
 const CartModal = (props) => {
     const [cartList, setCartList] = useState([])
     const [cartListEdited, setCartListEdited] = useState([])
+    const [checkedId, setCheckedId] = useState([])
 
     useEffect(() => {
         axios.get('http://localhost:1212/api/cart').then(res => {
@@ -20,7 +16,7 @@ const CartModal = (props) => {
         }).catch(err => {
             console.log(err)
         })
-    },[])
+    }, [])
 
     useEffect(() => {
         console.log("cart list updated")
@@ -28,12 +24,31 @@ const CartModal = (props) => {
     }, [cartList])
 
     const saveCart = () => {
-        console.log(console.log(cartListEdited))
+        console.log("save cart > > ", cartListEdited)
+        console.log("checked id > > ", checkedId)
     }
-    const cartEdited = (value)=> {
+
+    const cartEdited = (value) => {
         setCartListEdited(value)
-        console.log(">>>>>")
-        console.log("Cart Edited >>",cartListEdited)
+    }
+
+    const Checked = (e, id) => {
+        if (e.target.checked) {
+            if ([...checkedId].indexOf(id) === -1) {
+                let newCheckedArray = [...checkedId, id]
+                setCheckedId(newCheckedArray)
+            } else {
+                console.log('sudah ada')
+            }
+            console.log("Checked >>>", checkedId)
+        } else {
+            let unchecked = [...checkedId]
+            let index = unchecked.indexOf(id)
+            if(index !== -1){
+                unchecked.splice(index,1)
+                setCheckedId(unchecked)
+            }
+        }
     }
 
     return (
@@ -50,9 +65,9 @@ const CartModal = (props) => {
                                               data={data}
                                               cartEdit={cartEdited}
                                               dataArray={cartList}
-                                              checked={(e, id) => {
-                                        Checked(e, index)
-                                    }}/>
+                                              checked={(e) => {
+                                                  Checked(e, index)
+                                              }}/>
                                 ))}
                                 </tbody>
                             </Table>
@@ -60,7 +75,9 @@ const CartModal = (props) => {
 
                         </ModalBody>
                         <ModalFooter>
-                            <Button color="success" onClick={() => {saveCart()}}>Save</Button>
+                            <Button color="success" onClick={() => {
+                                saveCart()
+                            }}>Save</Button>
                             <Button color="link" onClick={props.toggle}>Cancel</Button>
                             <Button color="primary" onClick={props.toggle}>CheckOut!</Button>
                         </ModalFooter>
