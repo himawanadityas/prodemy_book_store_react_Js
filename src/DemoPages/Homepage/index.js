@@ -33,7 +33,6 @@ import cx from "classnames";
 import Footer from "../Components/GuidedTours/Examples/Footer";
 import ProductCard from "./ProductCard";
 import PageTitle from "../../Layout/AppMain/PageTitle";
-import AllBook from "./BookData";
 import {IoIosSearch} from "react-icons/all";
 
 const getId = (index) => {

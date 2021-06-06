@@ -4,11 +4,14 @@ import {IoIosCart} from "react-icons/io";
 import CartList from "./CartList";
 import axios from "axios";
 
-const Checked = (e) => {
-    console.log(e.target.checked, e.target.value)
+const Checked = (e, id) => {
+    if(e.target.checked){
+        console.log(id, "Checked")
+    }
 }
 const CartModal = (props) => {
     const [cartList, setCartList] = useState([])
+    const [cartListEdited, setCartListEdited] = useState([])
 
     useEffect(() => {
         axios.get('http://localhost:1212/api/cart').then(res => {
@@ -19,6 +22,20 @@ const CartModal = (props) => {
         })
     },[])
 
+    useEffect(() => {
+        console.log("cart list updated")
+        console.log(cartList)
+    }, [cartList])
+
+    const saveCart = () => {
+        console.log(console.log(cartListEdited))
+    }
+    const cartEdited = (value)=> {
+        setCartListEdited(value)
+        console.log(">>>>>")
+        console.log("Cart Edited >>",cartListEdited)
+    }
+
     return (
         <>
             <span className="d-inline-block mb-2 mr-2">
@@ -28,8 +45,13 @@ const CartModal = (props) => {
                             <Table>
                                 <tbody>
                                 {cartList.map((data, index) => (
-                                    <CartList key={index} title="title" subtitle="subtitle" id={index} checked={(e) => {
-                                        Checked(e)
+                                    <CartList key={index}
+                                              index={index}
+                                              data={data}
+                                              cartEdit={cartEdited}
+                                              dataArray={cartList}
+                                              checked={(e, id) => {
+                                        Checked(e, index)
                                     }}/>
                                 ))}
                                 </tbody>
@@ -38,6 +60,7 @@ const CartModal = (props) => {
 
                         </ModalBody>
                         <ModalFooter>
+                            <Button color="success" onClick={() => {saveCart()}}>Save</Button>
                             <Button color="link" onClick={props.toggle}>Cancel</Button>
                             <Button color="primary" onClick={props.toggle}>CheckOut!</Button>
                         </ModalFooter>
