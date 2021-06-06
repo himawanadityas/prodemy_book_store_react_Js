@@ -7,7 +7,7 @@ import axios from "axios";
 const CartModal = (props) => {
     const [cartList, setCartList] = useState([])
     const [cartListEdited, setCartListEdited] = useState([])
-    const [checkedId, setCheckedId] = useState([])
+    const [checkedState, setCheckedState] = useState([])
 
     useEffect(() => {
         axios.get('http://localhost:1212/api/cart').then(res => {
@@ -19,43 +19,63 @@ const CartModal = (props) => {
     }, [])
 
     useEffect(() => {
-        console.log("cart list updated")
-        console.log(cartList)
-    }, [cartList])
+        setCheckedState([])
+    }, [])
 
     const saveCart = () => {
-        console.log("save cart > > ", cartListEdited)
-        console.log("checked id > > ", checkedId)
+        const dataCart = []
+        checkedState.map((data, index) => {
+            dataCart.push(
+                {
+                    "id": data.id,
+                    "idBuku": data.idBuku,
+                    "idCustomer": data.idCustomer,
+                    "kuantitasBuku": data.kuantitasBuku
+                })
+        })
+
+        axios.post('http://localhost:1212/api/cart', dataCart)
+            .then(res => {})
+            .catch(err => {
+            console.log('pesan error >>', err)
+        })
+        
+        console.log("save cart > > ", cartList)
+        console.log("checked id > > ", dataCart)
+        setCheckedState([])
     }
 
     const cartEdited = (value) => {
-        setCartListEdited(value)
+        setCartList(value)
     }
 
     const Checked = (e, id) => {
         if (e.target.checked) {
-            if ([...checkedId].indexOf(id) === -1) {
-                let newCheckedArray = [...checkedId, id]
-                setCheckedId(newCheckedArray)
-            } else {
-                console.log('sudah ada')
+            if ([...checkedState].indexOf(id) === -1) {
+                let checked = [...checkedState, cartList[id]]
+                setCheckedState(checked)
+                console.log("check >> ", id)
             }
-            console.log("Checked >>>", checkedId)
         } else {
-            let unchecked = [...checkedId]
+            let unchecked = [...checkedState]
             let index = unchecked.indexOf(id)
-            if(index !== -1){
-                unchecked.splice(index,1)
-                setCheckedId(unchecked)
+            if (index !== -1) {
+                unchecked.splice(index, 1)
+                setCheckedState(unchecked)
+                console.log("uncheck >> ", id)
             }
         }
+    }
+
+    const deleteCart = () => {
+
     }
 
     return (
         <>
             <span className="d-inline-block mb-2 mr-2">
                  <Modal isOpen={props.modal} toggle={props.toggle} className={props.className}>
-                        <ModalHeader toggle={props.toggle}><IoIosCart size={20}/> My Cart</ModalHeader>
+                        <ModalHeader toggle={props.toggle}><IoIosCart size={18}/> My Cart</ModalHeader>
                         <ModalBody>
                             <Table>
                                 <tbody>

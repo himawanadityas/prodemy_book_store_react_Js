@@ -6,7 +6,7 @@ const CartList = (props) => {
     const [subTotal, setSubTotal] = useState(null)
 
     const quantityChange = (value) => {
-        setQuantity(value)
+        setQuantity(Number(value))
         setSubTotal(props.data.hargaBuku * value)
         let newData = [...props.dataArray];
         newData[props.index].kuantitasBuku = quantity;
