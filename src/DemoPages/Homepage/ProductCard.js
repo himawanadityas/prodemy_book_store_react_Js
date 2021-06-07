@@ -13,6 +13,7 @@ const ProductCard = (props) => {
     const [image, setImage] = useState("")
 
 
+
     const toggle = () => {
         setModal(!modal)
     }
@@ -47,7 +48,7 @@ const ProductCard = (props) => {
                             </div>
                         </CardFooter>
                     </Card>
-                    <DetailProductCard modal={modal} toggle={toggle} title={props.title} subtitle={props.subtitle}/>
+                    <DetailProductCard modal={modal} toggle={toggle} data={props.data}/>
                 </Col>
             </Fragment>
         )
@@ -73,7 +74,7 @@ const ProductCard = (props) => {
                             </div>
                         </CardFooter>
                     </Card>
-                    <DetailProductCard modal={modal} toggle={toggle} title={props.title} subtitle={props.subtitle}/>
+                    <DetailProductCard modal={modal} toggle={toggle} data={props.data} image={image}/>
                 </Col>
             </Fragment>
         )

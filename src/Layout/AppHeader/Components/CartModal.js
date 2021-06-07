@@ -1,8 +1,21 @@
 import React, {useEffect, useState} from "react";
-import {Button, Modal, ModalBody, ModalFooter, ModalHeader, Table} from "reactstrap";
+import {
+    Button, Card, CardFooter,
+    CardHeader, CustomInput, Dropdown, DropdownItem, DropdownMenu, DropdownToggle,
+    ListGroup,
+    ListGroupItem,
+    Modal,
+    ModalBody,
+    ModalFooter,
+    ModalHeader,
+    Table
+} from "reactstrap";
 import {IoIosCart} from "react-icons/io";
 import CartList from "./CartList";
 import axios from "axios";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCheck, faEllipsisH, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
+import avatar2 from "../../../assets/utils/images/avatars/2.jpg";
 
 const CartModal = (props) => {
     const [cartList, setCartList] = useState([])
@@ -108,21 +121,191 @@ const CartModal = (props) => {
                  <Modal isOpen={props.modal} toggle={props.toggle} className="modal-content">
                         <ModalHeader toggle={props.toggle} style={{backgroundColor:"#d2a58e"}}><IoIosCart size={18} /> My Cart</ModalHeader>
                         <ModalBody>
-                            <Table>
-                                <tbody>
-                                {cartList.map((data, index) => (
-                                    <CartList key={index}
-                                              index={index}
-                                              data={data}
-                                              cartEdit={cartEdited}
-                                              dataArray={cartList}
-                                              checked={(e) => {
-                                                  Checked(e, data.id)
-                                              }}/>
-                                ))}
-                                </tbody>
-                            </Table>
+                            {/*<Table>*/}
+                            {/*    <tbody>*/}
+                            {/*    {cartList.map((data, index) => (*/}
+                            {/*        <CartList key={index}*/}
+                            {/*                  index={index}*/}
+                            {/*                  data={data}*/}
+                            {/*                  cartEdit={cartEdited}*/}
+                            {/*                  dataArray={cartList}*/}
+                            {/*                  checked={(e) => {*/}
+                            {/*                      Checked(e, data.id)*/}
+                            {/*                  }}/>*/}
+                            {/*    ))}*/}
+                            {/*    </tbody>*/}
+                            {/*</Table>*/}
 
+                                    <ListGroup className="todo-list-wrapper" flush>
+                                        {/*<ListGroupItem>*/}
+                                        {/*    <div className="todo-indicator bg-warning"/>*/}
+                                        {/*    <div className="widget-content p-0">*/}
+                                        {/*        <div className="widget-content-wrapper">*/}
+                                        {/*            <div className="widget-content-left mr-2">*/}
+                                        {/*                <CustomInput type="checkbox" id="exampleCustomCheckbox12"*/}
+                                        {/*                             label="&nbsp;"/>*/}
+                                        {/*            </div>*/}
+                                        {/*            <div className="widget-content-left">*/}
+                                        {/*                <div className="widget-heading">*/}
+                                        {/*                    Wash the car*/}
+                                        {/*                    <div className="badge badge-danger ml-2">Rejected</div>*/}
+                                        {/*                </div>*/}
+                                        {/*                <div className="widget-subheading">*/}
+                                        {/*                    <i>Written by Bob</i>*/}
+                                        {/*                </div>*/}
+                                        {/*            </div>*/}
+                                        {/*            <div className="widget-content-right widget-content-actions">*/}
+                                        {/*                <Button className="border-0 btn-transition" outline*/}
+                                        {/*                        color="success">*/}
+                                        {/*                    <FontAwesomeIcon icon={faCheck}/>*/}
+                                        {/*                </Button>*/}
+                                        {/*                <Button className="border-0 btn-transition" outline*/}
+                                        {/*                        color="danger">*/}
+                                        {/*                    <FontAwesomeIcon icon={faTrashAlt}/>*/}
+                                        {/*                </Button>*/}
+                                        {/*            </div>*/}
+                                        {/*        </div>*/}
+                                        {/*    </div>*/}
+                                        {/*</ListGroupItem>*/}
+                                        {/*<ListGroupItem>*/}
+                                        {/*    <div className="todo-indicator bg-focus"/>*/}
+                                        {/*    <div className="widget-content p-0">*/}
+                                        {/*        <div className="widget-content-wrapper">*/}
+                                        {/*            <div className="widget-content-left mr-2">*/}
+                                        {/*                <CustomInput type="checkbox" id="exampleCustomCheckbox1"*/}
+                                        {/*                             label="&nbsp;"/>*/}
+                                        {/*            </div>*/}
+                                        {/*            <div className="widget-content-left">*/}
+                                        {/*                <div className="widget-heading">*/}
+                                        {/*                    Task with hover dropdown menu*/}
+                                        {/*                </div>*/}
+                                        {/*                <div className="widget-subheading">*/}
+                                        {/*                    <div>*/}
+                                        {/*                        By Johnny*/}
+                                        {/*                        <div*/}
+                                        {/*                            className="badge badge-pill badge-info ml-2">NEW</div>*/}
+                                        {/*                    </div>*/}
+                                        {/*                </div>*/}
+                                        {/*            </div>*/}
+                                        {/*            /!*<div className="widget-content-right widget-content-actions">*!/*/}
+                                        {/*            /!*    <Dropdown className="d-inline-block"*!/*/}
+                                        {/*            /!*              onMouseOver={this.onMouseEnter}*!/*/}
+                                        {/*            /!*              onMouseLeave={this.onMouseLeave}*!/*/}
+                                        {/*            /!*              isOpen={this.state.dropdownOpen}*!/*/}
+                                        {/*            /!*              toggle={this.toggle}>*!/*/}
+                                        {/*            /!*        <DropdownToggle color="link"*!/*/}
+                                        {/*            /!*                        className="border-0 btn-transition">*!/*/}
+                                        {/*            /!*            <FontAwesomeIcon icon={faEllipsisH}/>*!/*/}
+                                        {/*            /!*        </DropdownToggle>*!/*/}
+                                        {/*            /!*        <DropdownMenu right>*!/*/}
+                                        {/*            /!*            <DropdownItem header>Header</DropdownItem>*!/*/}
+                                        {/*            /!*            <DropdownItem disabled>Action</DropdownItem>*!/*/}
+                                        {/*            /!*            <DropdownItem>Another Action</DropdownItem>*!/*/}
+                                        {/*            /!*            <DropdownItem divider/>*!/*/}
+                                        {/*            /!*            <DropdownItem>Another Action</DropdownItem>*!/*/}
+                                        {/*            /!*        </DropdownMenu>*!/*/}
+                                        {/*            /!*    </Dropdown>*!/*/}
+                                        {/*            /!*</div>*!/*/}
+                                        {/*        </div>*/}
+                                        {/*    </div>*/}
+                                        {/*</ListGroupItem>*/}
+                                        {/*<ListGroupItem>*/}
+                                        {/*    <div className="todo-indicator bg-primary"/>*/}
+                                        {/*    <div className="widget-content p-0">*/}
+                                        {/*        <div className="widget-content-wrapper">*/}
+                                        {/*            <div className="widget-content-left mr-2">*/}
+                                        {/*                <CustomInput type="checkbox" id="exampleCustomCheckbox4"*/}
+                                        {/*                             label="&nbsp;"/>*/}
+                                        {/*            </div>*/}
+                                        {/*            <div className="widget-content-left flex2">*/}
+                                        {/*                <div className="widget-heading">*/}
+                                        {/*                    Badge on the right task*/}
+                                        {/*                </div>*/}
+                                        {/*                <div className="widget-subheading">*/}
+                                        {/*                    This task has show on hover actions!*/}
+                                        {/*                </div>*/}
+                                        {/*            </div>*/}
+                                        {/*            <div className="widget-content-right widget-content-actions">*/}
+                                        {/*                <Button className="border-0 btn-transition" outline*/}
+                                        {/*                        color="success">*/}
+                                        {/*                    <FontAwesomeIcon icon={faCheck}/>*/}
+                                        {/*                </Button>*/}
+                                        {/*            </div>*/}
+                                        {/*            <div className="widget-content-right ml-3">*/}
+                                        {/*                <div className="badge badge-pill badge-success">Latest Task*/}
+                                        {/*                </div>*/}
+                                        {/*            </div>*/}
+                                        {/*        </div>*/}
+                                        {/*    </div>*/}
+                                        {/*</ListGroupItem>*/}
+                                        {/*<ListGroupItem>*/}
+                                        {/*    <div className="todo-indicator bg-info"/>*/}
+                                        {/*    <div className="widget-content p-0">*/}
+                                        {/*        <div className="widget-content-wrapper">*/}
+                                        {/*            <div className="widget-content-left mr-2">*/}
+                                        {/*                <CustomInput type="checkbox" id="exampleCustomCheckbox2"*/}
+                                        {/*                             label="&nbsp;"/>*/}
+                                        {/*            </div>*/}
+                                        {/*            <div className="widget-content-left mr-3">*/}
+                                        {/*                <div className="widget-content-left">*/}
+                                        {/*                    <img width={42} className="rounded" src={avatar2} alt=""/>*/}
+                                        {/*                </div>*/}
+                                        {/*            </div>*/}
+                                        {/*            <div className="widget-content-left">*/}
+                                        {/*                <div className="widget-heading">*/}
+                                        {/*                    Go grocery shopping*/}
+                                        {/*                </div>*/}
+                                        {/*                <div className="widget-subheading">*/}
+                                        {/*                    A short description for this todo item*/}
+                                        {/*                </div>*/}
+                                        {/*            </div>*/}
+                                        {/*            <div className="widget-content-right widget-content-actions">*/}
+                                        {/*                <Button className="border-0 btn-transition" outline*/}
+                                        {/*                        color="success">*/}
+                                        {/*                    <FontAwesomeIcon icon={faCheck}/>*/}
+                                        {/*                </Button>*/}
+                                        {/*                <Button className="border-0 btn-transition" outline*/}
+                                        {/*                        color="danger">*/}
+                                        {/*                    <FontAwesomeIcon icon={faTrashAlt}/>*/}
+                                        {/*                </Button>*/}
+                                        {/*            </div>*/}
+                                        {/*        </div>*/}
+                                        {/*    </div>*/}
+                                        {/*</ListGroupItem>*/}
+                                        {/*<ListGroupItem>*/}
+                                        {/*    <div className="todo-indicator bg-success"/>*/}
+                                        {/*    <div className="widget-content p-0">*/}
+                                        {/*        <div className="widget-content-wrapper">*/}
+                                        {/*            <div className="widget-content-left mr-2">*/}
+                                        {/*                <CustomInput type="checkbox" id="exampleCustomCheckbox3"*/}
+                                        {/*                             label="&nbsp;"/>*/}
+                                        {/*            </div>*/}
+                                        {/*            <div className="widget-content-left flex2">*/}
+                                        {/*                <div className="widget-heading">*/}
+                                        {/*                    Development Task*/}
+                                        {/*                </div>*/}
+                                        {/*                <div className="widget-subheading">*/}
+                                        {/*                    Finish React ToDo List App*/}
+                                        {/*                </div>*/}
+                                        {/*            </div>*/}
+                                        {/*            <div className="widget-content-right">*/}
+                                        {/*                /!*<div className="badge badge-warning mr-2">69</div>*!/*/}
+                                        {/*                <CustomInput type="number"/>*/}
+                                        {/*            </div>*/}
+                                        {/*            <div className="widget-content-right">*/}
+                                        {/*                <Button className="border-0 btn-transition" outline*/}
+                                        {/*                        color="success">*/}
+                                        {/*                    <FontAwesomeIcon icon={faCheck}/>*/}
+                                        {/*                </Button>*/}
+                                        {/*                <Button className="border-0 btn-transition" outline*/}
+                                        {/*                        color="danger">*/}
+                                        {/*                    <FontAwesomeIcon icon={faTrashAlt}/>*/}
+                                        {/*                </Button>*/}
+                                        {/*            </div>*/}
+                                        {/*        </div>*/}
+                                        {/*    </div>*/}
+                                        {/*</ListGroupItem>*/}
+                                    </ListGroup>
 
                         </ModalBody>
                         <ModalFooter>

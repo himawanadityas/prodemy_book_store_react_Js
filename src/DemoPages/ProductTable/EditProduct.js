@@ -24,17 +24,6 @@ const EditProduct = (props) => {
     const [price, setPrice] = useState(null)
     const [file, setFile] = useState(null)
 
-    // useEffect(() => {
-    //     setId(props.data.id)
-    //     setTitle(props.data.judulBuku)
-    //     setYear(props.data.tahunTerbit)
-    //     setAuthor(props.data.namaPengarang)
-    //     setPublisher(props.data.namaPenerbit)
-    //     setCategory(props.data.namaKategori)
-    //     setStock(props.data.stokBuku)
-    //     setPrice(props.data.hargaBuku)
-    //     setFile(props.file)
-    // },[])
 
     const onSubmit = () => {
 
@@ -60,8 +49,8 @@ const EditProduct = (props) => {
                 'content-type': 'multipart/mixed'
             }
         }
-        // axios.post("http://localhost:1212/api/book/save", formData, config)
-        //     .then(res => console.log(res.data)).catch()
+        axios.post("http://localhost:1212/api/book/save", formData, config)
+            .then(res => console.log(res.data)).catch()
 
         props.onChangeToggle()
         console.log(' SAVE >>')
