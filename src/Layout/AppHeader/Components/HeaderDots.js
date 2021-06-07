@@ -101,6 +101,11 @@ class HeaderDots extends React.Component {
             modal: !this.state.modal
         });
     }
+    toggleChange() {
+        this.setState({
+            modal: false
+        });
+    }
 
     render() {
         return (
@@ -121,7 +126,7 @@ class HeaderDots extends React.Component {
                         <IoIosContact color="#985534" fontSize="23px"/>
                         <div className="badge badge-dot badge-dot-sm badge-danger">Notifications</div>
                     </div>
-                    <CartModal toggle={this.toggle} modal={this.state.modal} />
+                    <CartModal toggle={this.toggle} modal={this.state.modal} toggleChange={this.toggleChange}/>
 
                     {/*<UncontrolledDropdown>*/}
                     {/*    <DropdownToggle className="p-0 mr-2" color="link">*/}

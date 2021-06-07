@@ -63,7 +63,7 @@ const EditProduct = (props) => {
         // axios.post("http://localhost:1212/api/book/save", formData, config)
         //     .then(res => console.log(res.data)).catch()
 
-        props.onChangeToggle(false)
+        props.onChangeToggle()
         console.log(' SAVE >>')
         console.log(file == null ? props.data : file)
 

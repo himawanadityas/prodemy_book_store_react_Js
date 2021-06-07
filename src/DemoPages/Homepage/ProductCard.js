@@ -22,33 +22,62 @@ const ProductCard = (props) => {
         }).catch()
     },[])
 
-    return (
-        <Fragment>
-            <Col md="3">
-                <Card className="main-card mb-3">
-                    <CardImg top width="20%"
-                             src={"data:image/*;base64,"+image}
-                             alt="Card image cap" onClick={(e) => {
-                        setModal(!modal)
-                    }}/>
-                    <CardBody>
-                        <CardTitle>{props.title}</CardTitle>
-                        <CardSubtitle>{props.subtitle}</CardSubtitle>
-                    </CardBody>
-                    <CardFooter>
-                        <div className='align-content'>
-                            <Button className="btn btn-success" onClick={props.handleClick}>
-                                <IoIosCart size={20}/>
-                            </Button>
-                        </div>
-                    </CardFooter>
-                </Card>
-                <DetailProductCard modal={modal} toggle={toggle} title={props.title} subtitle={props.subtitle}/>
-            </Col>
-            {/*<Button color="success" onClick={() => this.setState({show: true})}>Show*/}
-            {/*    Alert</Button>*/}
+    if(props.data.stokBuku === 0) {
+        return (
+            <Fragment>
+                <Col md="3">
+                    <Card className="main-card mb-3">
+                        <CardImg top width="20%"
+                                 src={"data:image/*;base64,"+image}
+                                 alt="Card image cap" onClick={(e) => {
+                            setModal(!modal)
+                        }}/>
+                        <CardBody>
+                            <CardTitle>{props.title}</CardTitle>
+                            <CardSubtitle>{props.subtitle}</CardSubtitle>
+                        </CardBody>
+                        <CardFooter>
+                            <div className='align-content'>
+                                <Button className="btn btn-success" disabled>
+                                    <IoIosCart size={20}/>
+                                </Button>
+                            </div>
+                            <div className='align-content'>
+                                <span>Kosong</span>
+                            </div>
+                        </CardFooter>
+                    </Card>
+                    <DetailProductCard modal={modal} toggle={toggle} title={props.title} subtitle={props.subtitle}/>
+                </Col>
+            </Fragment>
+        )
+    } else {
+        return (
+            <Fragment>
+                <Col md="3">
+                    <Card className="main-card mb-3">
+                        <CardImg top width="20%"
+                                 src={"data:image/*;base64,"+image}
+                                 alt="Card image cap" onClick={(e) => {
+                            setModal(!modal)
+                        }}/>
+                        <CardBody>
+                            <CardTitle>{props.title}</CardTitle>
+                            <CardSubtitle>{props.subtitle}</CardSubtitle>
+                        </CardBody>
+                        <CardFooter>
+                            <div className='align-content'>
+                                <Button className="btn btn-success" onClick={props.handleClick}>
+                                    <IoIosCart size={20}/>
+                                </Button>
+                            </div>
+                        </CardFooter>
+                    </Card>
+                    <DetailProductCard modal={modal} toggle={toggle} title={props.title} subtitle={props.subtitle}/>
+                </Col>
+            </Fragment>
+        )
+    }
 
-        </Fragment>
-    )
 }
 export default ProductCard;

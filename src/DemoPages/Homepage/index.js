@@ -63,8 +63,9 @@ const Homepage = () => {
                 "kuantitasBuku": 1
             }]
         }
-        // axios.post('http://localhost:1212/api/cart', dataCart).then().catch()
+        axios.post('http://localhost:1212/api/cart', dataCart).then().catch()
     }
+
 
     const handleSearch = () => {
         setSearchActive(true)
@@ -111,7 +112,7 @@ const Homepage = () => {
                             </Jumbotron>
                             <Row>
                                 {listSearch.map((data, index) => (
-                                    <ProductCard key={index} title={data.judulBuku} subtitle={data.hargaBuku}
+                                    <ProductCard key={index} data={data} title={data.judulBuku} subtitle={data.hargaBuku}
                                                  id={data.id} handleClick={() => {
                                         addToCart(data)
                                     }}/>
@@ -163,7 +164,7 @@ const Homepage = () => {
                         </Jumbotron>
                         <Row>
                             {listDataBook.map((data, index) => (
-                                <ProductCard key={index} title={data.judulBuku} subtitle={data.hargaBuku}
+                                <ProductCard key={index} data={data} title={data.judulBuku} subtitle={data.hargaBuku}
                                              id={data.id} handleClick={() => {
                                     addToCart(data)
                                 }}/>

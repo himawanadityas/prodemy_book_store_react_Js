@@ -46,7 +46,7 @@ const CartModal = (props) => {
         console.log("save cart > > ", cartList)
         console.log("checked id > > ", dataCart)
         setCheckedState([])
-
+        props.toggle(false)
         getAllCartData()
     }
 
@@ -98,13 +98,15 @@ const CartModal = (props) => {
         checkedState.map((id) => {
             axios.delete('http://localhost:1212/api/cart/'+id).then().catch()
         })
+
+        props.toggle(false)
     }
 
     return (
         <>
             <span className="d-inline-block mb-2 mr-2">
-                 <Modal isOpen={props.modal} toggle={props.toggle} className={props.className}>
-                        <ModalHeader toggle={props.toggle}><IoIosCart size={18}/> My Cart</ModalHeader>
+                 <Modal isOpen={props.modal} toggle={props.toggle} className="modal-content">
+                        <ModalHeader toggle={props.toggle} style={{backgroundColor:"#d2a58e"}}><IoIosCart size={18} /> My Cart</ModalHeader>
                         <ModalBody>
                             <Table>
                                 <tbody>

@@ -21,7 +21,7 @@ const ProductTable = () => {
     const [productData, setProductData] = useState([])
     const [modalEdit, setModalEdit] = useState(false)
     const [modalAdd, setModalAdd] = useState(false)
-    const [del, setDel] = useState(0)
+    const [del, setDel] = useState(null)
     const [dataa, setDataa] = useState({})
     const [file, setFile] = useState("")
 
@@ -31,7 +31,7 @@ const ProductTable = () => {
             .then(res => {
                 setProductData(res.data)
             }).catch();
-    }, [del])
+    },[del])
 
 
     const toggleAdd = () => {

@@ -39,7 +39,7 @@ const AddProduct = (props) => {
         axios.post("http://localhost:1212/api/book/save", formData, config)
             .then(res => console.log(res.data)).catch()
 
-        props.onChangeToggle(false)
+        props.onChangeToggle()
 
     }
 
@@ -82,7 +82,7 @@ const AddProduct = (props) => {
                                 </FormGroup>
                                 <FormGroup>
                                     <Input type="number" name="stock" id="stock"
-                                           placeholder="Stok" min={1} onChange={(e) => {
+                                           placeholder="Stok" min={0} onChange={(e) => {
                                         setStock(e.target.value)
                                     }}/>
                                 </FormGroup>
