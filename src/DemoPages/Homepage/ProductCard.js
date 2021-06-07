@@ -6,10 +6,12 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import DetailProductCard from "./DetailProductCard";
 import {IoIosCart} from "react-icons/io";
 import axios from "axios";
+import SweetAlert from "sweetalert-react";
 
 const ProductCard = (props) => {
     const [modal, setModal] = useState(false)
     const [image, setImage] = useState("")
+
 
     const toggle = () => {
         setModal(!modal)
@@ -43,6 +45,9 @@ const ProductCard = (props) => {
                 </Card>
                 <DetailProductCard modal={modal} toggle={toggle} title={props.title} subtitle={props.subtitle}/>
             </Col>
+            {/*<Button color="success" onClick={() => this.setState({show: true})}>Show*/}
+            {/*    Alert</Button>*/}
+
         </Fragment>
     )
 }

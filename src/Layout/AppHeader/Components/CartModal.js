@@ -9,13 +9,16 @@ const CartModal = (props) => {
     const [cartListEdited, setCartListEdited] = useState([])
     const [checkedState, setCheckedState] = useState([])
 
-    useEffect(() => {
+
+    const getAllCartData = () => {
         axios.get('http://localhost:1212/api/cart').then(res => {
             setCartList(res.data)
-            console.log(res.data)
         }).catch(err => {
             console.log(err)
         })
+    }
+    useEffect(() => {
+        getAllCartData()
     }, [])
 
     useEffect(() => {
@@ -23,9 +26,9 @@ const CartModal = (props) => {
     }, [])
 
     const saveCart = () => {
-        const dataCart = []
-        checkedState.map((data, index) => {
-            dataCart.push(
+        const dataCart = {"addToCart": []}
+        cartList.map((data, index) => {
+            dataCart.addToCart.push(
                 {
                     "id": data.id,
                     "idBuku": data.idBuku,
@@ -39,20 +42,41 @@ const CartModal = (props) => {
             .catch(err => {
             console.log('pesan error >>', err)
         })
-        
+
         console.log("save cart > > ", cartList)
         console.log("checked id > > ", dataCart)
         setCheckedState([])
+
+        getAllCartData()
     }
 
     const cartEdited = (value) => {
         setCartList(value)
     }
 
+    // const Checked = (e, id) => {
+    //     if (e.target.checked) {
+    //         if ([...checkedState].indexOf(id) === -1) {
+    //             let checked = [...checkedState, cartList[id]]
+    //             setCheckedState(checked)
+    //             console.log("check >> ", id)
+    //         }
+    //     } else {
+    //         let unchecked = [...checkedState]
+    //         let index = unchecked.indexOf(id)
+    //         if (index !== -1) {
+    //             unchecked.splice(index, 1)
+    //             setCheckedState(unchecked)
+    //             console.log("uncheck >> ", id)
+    //         }
+    //     }
+    // }
+
+
     const Checked = (e, id) => {
         if (e.target.checked) {
             if ([...checkedState].indexOf(id) === -1) {
-                let checked = [...checkedState, cartList[id]]
+                let checked = [...checkedState, id]
                 setCheckedState(checked)
                 console.log("check >> ", id)
             }
@@ -69,6 +93,11 @@ const CartModal = (props) => {
 
     const deleteCart = () => {
 
+        console.log("checked to delete >> ",checkedState)
+
+        checkedState.map((id) => {
+            axios.delete('http://localhost:1212/api/cart/'+id).then().catch()
+        })
     }
 
     return (
@@ -86,7 +115,7 @@ const CartModal = (props) => {
                                               cartEdit={cartEdited}
                                               dataArray={cartList}
                                               checked={(e) => {
-                                                  Checked(e, index)
+                                                  Checked(e, data.id)
                                               }}/>
                                 ))}
                                 </tbody>
@@ -95,6 +124,7 @@ const CartModal = (props) => {
 
                         </ModalBody>
                         <ModalFooter>
+                            <Button color="danger" onClick={() =>{deleteCart()}}>Delete</Button>
                             <Button color="success" onClick={() => {
                                 saveCart()
                             }}>Save</Button>

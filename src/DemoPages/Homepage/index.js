@@ -34,17 +34,16 @@ import Footer from "../Components/GuidedTours/Examples/Footer";
 import ProductCard from "./ProductCard";
 import PageTitle from "../../Layout/AppMain/PageTitle";
 import {IoIosSearch} from "react-icons/all";
+import SweetAlert from "sweetalert-react";
 
-const getId = (index) => {
-    console.log('>> Get Index >>')
-    console.log(index)
-}
+
 const Homepage = () => {
     const [listDataBook, setListDataBook] = useState([])
     const [search, setSearch] = useState("")
     const [listSearch, setListSearch] = useState([])
     const [searchActive, setSearchActive] = useState(false)
-
+    const [showNotif, setShowNotif] = useState(false)
+    const [detailNotif, setDetailNotif] = useState(null)
 
     useEffect(() => {
         axios.get('http://localhost:1212/api/book').then(res => {
@@ -52,6 +51,20 @@ const Homepage = () => {
             console.log(res.data)
         }).catch()
     }, [])
+
+    const addToCart = (value) => {
+        let text = "Add " + value.judulBuku + " to your cart"
+        setDetailNotif(text)
+        setShowNotif(true)
+        const dataCart = {
+            "addToCart": [{
+                "id": value.id,
+                "idBuku": value.id,
+                "kuantitasBuku": 1
+            }]
+        }
+        // axios.post('http://localhost:1212/api/cart', dataCart).then().catch()
+    }
 
     const handleSearch = () => {
         setSearchActive(true)
@@ -99,13 +112,22 @@ const Homepage = () => {
                             <Row>
                                 {listSearch.map((data, index) => (
                                     <ProductCard key={index} title={data.judulBuku} subtitle={data.hargaBuku}
-                                                 id={data.id} handleClick={() => {getId(data.id)}}/>
+                                                 id={data.id} handleClick={() => {
+                                        addToCart(data)
+                                    }}/>
                                 ))}
                             </Row>
 
                             <AppFooter/>
                         </div>
                     </div>
+                    <SweetAlert
+                        title="Added to Cart!"
+                        confirmButtonColor=""
+                        show={showNotif}
+                        text= {detailNotif}
+                        type="success"
+                        onConfirm={() => {setShowNotif(false)}}/>
                 </CSSTransitionGroup>
             </Fragment>);
     }
@@ -142,13 +164,22 @@ const Homepage = () => {
                         <Row>
                             {listDataBook.map((data, index) => (
                                 <ProductCard key={index} title={data.judulBuku} subtitle={data.hargaBuku}
-                                             id={data.id} handleClick={() => {getId(data.id)}}/>
+                                             id={data.id} handleClick={() => {
+                                    addToCart(data)
+                                }}/>
                             ))}
                         </Row>
 
                         <AppFooter/>
                     </div>
                 </div>
+                <SweetAlert
+                    title="Added to Cart!"
+                    confirmButtonColor=""
+                    show={showNotif}
+                    text={detailNotif}
+                    type="success"
+                    onConfirm={() => {setShowNotif(false)}}/>
             </CSSTransitionGroup>
         </Fragment>);
 
