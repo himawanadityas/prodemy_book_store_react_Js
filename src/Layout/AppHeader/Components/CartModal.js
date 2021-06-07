@@ -137,6 +137,15 @@ const CartModal = (props) => {
                             {/*</Table>*/}
 
                                     <ListGroup className="todo-list-wrapper" flush>
+                                        {cartList.map((data, index) => (
+                                            <CartList key={index}
+                                                      index={index}
+                                                      data={data}
+                                                      cartEdit={cartEdited}
+                                                      dataArray={cartList}
+                                                      checked={(e) => {Checked(e, data.id)}}/>
+                                        ))}
+
                                         {/*<ListGroupItem>*/}
                                         {/*    <div className="todo-indicator bg-warning"/>*/}
                                         {/*    <div className="widget-content p-0">*/}

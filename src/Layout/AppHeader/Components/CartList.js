@@ -43,8 +43,9 @@ const CartList = (props) => {
                 <div className="widget-content p-0">
                     <div className="widget-content-wrapper">
                         <div className="widget-content-left mr-2">
-                            <CustomInput type="checkbox" onChange={props.checked} id={props.id}
+                            <CustomInput type="checkbox" id={props.data.id} onChange={props.checked}
                                          label="&nbsp;"/>
+                            {/*<Input type="checkbox" onChange={props.checked} id={props.id}/>*/}
                         </div>
                         <div className="widget-content-left flex2">
                             <div className="widget-heading">
@@ -55,22 +56,17 @@ const CartList = (props) => {
                             </div>
                         </div>
                         <div className="widget-content-right">
+                            <h6>
+                                {subTotal}
+                            </h6>
+                        </div>
+                        <div className="widget-content-right">
                             {/*<div className="badge badge-warning mr-2">69</div>*/}
-                            <Input type="number" value={quantity == null ? props.data.kuantitasBuku : quantity} onChange={(e) => {
+                            <Input type="number" min={1} value={quantity == null ? props.data.kuantitasBuku : quantity} onChange={(e) => {
                                 quantityChange(e.target.value)
                             }} onClick={(e) => {
                                 quantityChange(e.target.value)
-                            }}/>
-                        </div>
-                        <div className="widget-content-right">
-                            <Button className="border-0 btn-transition" outline
-                                    color="success">
-                                <FontAwesomeIcon icon={faCheck}/>
-                            </Button>
-                            <Button className="border-0 btn-transition" outline
-                                    color="danger">
-                                <FontAwesomeIcon icon={faTrashAlt}/>
-                            </Button>
+                            }} width={30}/>
                         </div>
                     </div>
                 </div>

@@ -78,7 +78,7 @@ class LoadersAdvancedExample extends Component {
                         <div>
                             <Loader
                                 message={spinner1}
-                                show={loader1} priority={10}>
+                                show={loader1} hideContentOnLoad priority={10}>
                                 <div style={contentBoxStyle}>
                                     Loader 1 content
 
