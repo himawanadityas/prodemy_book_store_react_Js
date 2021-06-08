@@ -25,13 +25,21 @@ const ProductTable = () => {
     const [dataa, setDataa] = useState({})
     const [file, setFile] = useState("")
 
+    const getAllData = () => {
+        axios.get("http://localhost:1212/api/book")
+            .then(res => {
+                setProductData(res.data)
+            }).catch();
+    }
+
 
     useEffect(() => {
         axios.get("http://localhost:1212/api/book")
             .then(res => {
                 setProductData(res.data)
+                console.log(res.data)
             }).catch();
-    },[del])
+    },[])
 
 
     const toggleAdd = () => {
@@ -50,12 +58,19 @@ const ProductTable = () => {
     }
 
     const deleteData = (id) => {
-        axios.delete('http://localhost:1212/api/book/' + id).then().catch(err => console.log(err))
-        setDel(id)
+        console.log("delete", id)
+        axios.delete('http://localhost:1212/api/book/' + id).then(getAllData).catch(err => console.log(err))
     }
 
     const onChangeToggleAdd = () => {
         setModalAdd(!modalAdd)
+            // axios.get("http://localhost:1212/api/book")
+            //     .then(res => {
+            //         let product = [...productData]
+            //         product.push(res.data)
+            //         console.log(product)
+            //     }).catch();
+
     }
     const onChangeToggleEdit = () => {
         setModalEdit(!modalEdit)

@@ -37,7 +37,7 @@ const AddProduct = (props) => {
             }
         }
         axios.post("http://localhost:1212/api/book/save", formData, config)
-            .then(res => console.log(res.data)).catch()
+            .then().catch()
 
         props.onChangeToggle()
 

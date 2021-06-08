@@ -45,19 +45,18 @@ const CartList = (props) => {
                         <div className="widget-content-left mr-2">
                             <CustomInput type="checkbox" id={props.data.id} onChange={props.checked}
                                          label="&nbsp;"/>
-                            {/*<Input type="checkbox" onChange={props.checked} id={props.id}/>*/}
                         </div>
                         <div className="widget-content-left flex2">
                             <div className="widget-heading">
-                                Development Task
+                                {props.data.judulBuku}
                             </div>
                             <div className="widget-subheading">
-                                Finish React ToDo List App
+                                Subtotal : Rp {subTotal} ,-
                             </div>
                         </div>
                         <div className="widget-content-right">
                             <h6>
-                                {subTotal}
+
                             </h6>
                         </div>
                         <div className="widget-content-right">

@@ -39,8 +39,8 @@ class HeaderLogo extends React.Component {
     render() {
         return (
             <Fragment>
-                <div className="app-header__logo">
-                    <div className="logo-src"/>
+                {/*<div className="app-header__logo">*/}
+                    {/*<div className="logo-src"/>*/}
                     {/*<div className="header__pane ml-auto">*/}
                     {/*    /!*<div onClick={this.toggleEnableClosedSidebar}>*!/*/}
                     {/*    /!*<Spring*!/*/}
@@ -52,7 +52,7 @@ class HeaderLogo extends React.Component {
                     {/*    /!* onClick={() => this.setState({ active: !this.state.active })}/>*!/*/}
                     {/*    /!*</div>*!/*/}
                     {/*</div>*/}
-                </div>
+                {/*</div>*/}
                 <AppMobileMenu/>
             </Fragment>
         )

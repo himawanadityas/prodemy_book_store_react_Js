@@ -54,8 +54,9 @@
       .app-sidebar {
 
         .app-header__logo {
-          width: $app-sidebar-width-collapsed;
+          //width: $app-sidebar-width-collapsed;
           padding: 0;
+          width: 0;
 
           .logo-src {
             display: none;

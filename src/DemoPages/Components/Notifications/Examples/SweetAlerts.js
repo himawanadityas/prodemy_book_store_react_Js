@@ -156,7 +156,7 @@ export default class SweetAlerts extends Component {
                                         text="You will not be able to recover this imaginary file!"
                                         showCancelButton
                                         onConfirm={() => this.setState({showDeleteSuccessAlert: true})}
-                                        onCancel={() => this.setState({message5: true})}/>
+                                        onCancel={() => this.setState({message5: false})}/>
 
                                     <SweetAlert
                                         title="Deleted"

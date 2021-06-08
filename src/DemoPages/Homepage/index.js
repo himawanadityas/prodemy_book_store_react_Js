@@ -22,28 +22,33 @@ import {
     ListGroupItem,
     Row
 } from "reactstrap";
-import bg1 from "../../assets/utils/images/dropdown-header/abstract1.jpg";
-import avatar1 from "../../assets/utils/images/avatars/1.jpg";
-import bg2 from "../../assets/utils/images/dropdown-header/abstract2.jpg";
-import avatar2 from "../../assets/utils/images/avatars/2.jpg";
-import LiquidFillGauge from "react-liquid-gauge";
-import bg3 from "../../assets/utils/images/dropdown-header/abstract3.jpg";
-import avatar3 from "../../assets/utils/images/avatars/3.jpg";
-import cx from "classnames";
-import Footer from "../Components/GuidedTours/Examples/Footer";
 import ProductCard from "./ProductCard";
 import PageTitle from "../../Layout/AppMain/PageTitle";
 import {IoIosSearch} from "react-icons/all";
 import SweetAlert from "sweetalert-react";
+import BestSeller from "./BestSeller";
+import Slider from "react-slick";
+import image from "../../assets/utils/images/SMP-books-banner.jpg"
+import jumbotron2 from "../../assets/utils/images/amazing-old-book-high-resolution-wallpaper-download-free-.jpg"
+import SearchBox from "../../Layout/AppHeader/Components/SearchBox";
 
 
 const Homepage = () => {
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 3
+    }
     const [listDataBook, setListDataBook] = useState([])
     const [search, setSearch] = useState("")
     const [listSearch, setListSearch] = useState([])
     const [searchActive, setSearchActive] = useState(false)
     const [showNotif, setShowNotif] = useState(false)
     const [detailNotif, setDetailNotif] = useState(null)
+    const [bestSeller, setBestSeller] = useState([])
+    const [recommendation, setRecommendation] = useState([])
 
     useEffect(() => {
         axios.get('http://localhost:1212/api/book').then(res => {
@@ -52,8 +57,15 @@ const Homepage = () => {
         }).catch()
     }, [])
 
+    useEffect(() => {
+        axios.get('http://localhost:1212/api/rekomendasi').then(res => {
+            setRecommendation(res.data)
+            console.log(res.data)
+        }).catch()
+    }, [])
+
     const addToCart = (value) => {
-        let text = "Add " + value.judulBuku + " to your cart"
+        let text = "Add '" + value.judulBuku + "' to your cart"
         setDetailNotif(text)
         setShowNotif(true)
         const dataCart = {
@@ -99,20 +111,23 @@ const Homepage = () => {
                                 breadcrumbPaths={[]}
                             />
 
-                            <Jumbotron>
-                                <div className="input-holder">
-                                    <input type="text" className="search-input" placeholder="Search Books"
-                                           onChange={(e) => {
-                                               handleChangeSearch(e)
-                                           }}/>
-                                    <Button className="search-icon" onClick={() => {
-                                        handleSearch()
-                                    }}><IoIosSearch size={15}/></Button>
+                            <Jumbotron style={{backgroundImage: `url(${image})`, backgroundSize: 'cover', height: 300}}>
+                                <div className="search-wrapper active">
+                                    <div className="input-holder">
+                                        <input type="text" className="search-input" placeholder="Search Books"
+                                               onChange={(e) => {
+                                                   handleChangeSearch(e)
+                                               }}/>
+                                        <Button className="search-icon" onClick={() => {
+                                            handleSearch()
+                                        }}><span/></Button>
+                                    </div>
                                 </div>
                             </Jumbotron>
                             <Row>
                                 {listSearch.map((data, index) => (
-                                    <ProductCard key={index} data={data} title={data.judulBuku} subtitle={data.hargaBuku}
+                                    <ProductCard key={index} data={data} title={data.judulBuku}
+                                                 subtitle={data.hargaBuku}
                                                  id={data.id} handleClick={() => {
                                         addToCart(data)
                                     }}/>
@@ -126,9 +141,11 @@ const Homepage = () => {
                         title="Added to Cart!"
                         confirmButtonColor=""
                         show={showNotif}
-                        text= {detailNotif}
+                        text={detailNotif}
                         type="success"
-                        onConfirm={() => {setShowNotif(false)}}/>
+                        onConfirm={() => {
+                            setShowNotif(false)
+                        }}/>
                 </CSSTransitionGroup>
             </Fragment>);
     }
@@ -150,24 +167,56 @@ const Homepage = () => {
                             icon="pe-7s-diamond icon-gradient bg-premium-dark"
                             breadcrumbPaths={[]}
                         />
-
-                        <Jumbotron>
-                            <div className="input-holder">
-                                <input type="text" className="search-input" placeholder="Search Books"
-                                       onChange={(e) => {
-                                           handleChangeSearch(e)
-                                       }}/>
-                                <Button className="search-icon" onClick={() => {
-                                    handleSearch()
-                                }}><IoIosSearch size={15}/></Button>
+                        <Jumbotron style={{backgroundImage: `url(${image})`, backgroundSize: 'cover', height: 300}}>
+                            <div className="search-wrapper active">
+                                <div className="input-holder">
+                                    <input type="text" className="search-input" placeholder="Search Books"
+                                           onChange={(e) => {
+                                               handleChangeSearch(e)
+                                           }}/>
+                                    <Button className="search-icon" onClick={() => {
+                                        handleSearch()
+                                    }}><span/></Button>
+                                </div>
                             </div>
                         </Jumbotron>
                         <Row>
                             {listDataBook.map((data, index) => (
-                                <ProductCard key={index} data={data} title={data.judulBuku} subtitle={data.hargaBuku}
+
+                                <ProductCard key={index} data={data} title={data.judulBuku}
+                                             subtitle={data.hargaBuku}
                                              id={data.id} handleClick={() => {
                                     addToCart(data)
                                 }}/>
+
+                            ))}
+                        </Row>
+                        <Jumbotron style={{backgroundImage: `url(${jumbotron2})`, backgroundSize: 'cover'}}>
+                            <h2 style={{textAlign: "right", color: "whitesmoke"}}>Best Seller</h2>
+                        </Jumbotron>
+                        <Row>
+                            {recommendation.map((data, index) => (
+
+                                <ProductCard key={index} data={data} title={data.judulBuku}
+                                             subtitle={data.hargaBuku}
+                                             id={data.id} handleClick={() => {
+                                    addToCart(data)
+                                }}/>
+
+                            ))}
+                        </Row>
+                        <Jumbotron style={{backgroundImage: `url(${jumbotron2})`, backgroundSize: 'cover'}}>
+                            <h2 style={{textAlign: "right", color: "whitesmoke"}}>Best Seller</h2>
+                        </Jumbotron>
+                        <Row>
+                            {recommendation.map((data, index) => (
+
+                                <ProductCard key={index} data={data} title={data.judulBuku}
+                                             subtitle={data.hargaBuku}
+                                             id={data.id} handleClick={() => {
+                                    addToCart(data)
+                                }}/>
+
                             ))}
                         </Row>
 
@@ -180,8 +229,11 @@ const Homepage = () => {
                     show={showNotif}
                     text={detailNotif}
                     type="success"
-                    onConfirm={() => {setShowNotif(false)}}/>
+                    onConfirm={() => {
+                        setShowNotif(false)
+                    }}/>
             </CSSTransitionGroup>
+            <BestSeller/>
         </Fragment>);
 
 };

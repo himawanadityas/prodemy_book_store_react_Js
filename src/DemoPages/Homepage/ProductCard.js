@@ -55,9 +55,9 @@ const ProductCard = (props) => {
     } else {
         return (
             <Fragment>
-                <Col md="3">
+                <Col md="2">
                     <Card className="main-card mb-3">
-                        <CardImg top width="20%"
+                        <CardImg top width="20%" height={200}
                                  src={"data:image/*;base64,"+image}
                                  alt="Card image cap" onClick={(e) => {
                             setModal(!modal)
