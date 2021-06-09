@@ -16,14 +16,16 @@ import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import Header from "../../Layout/AppHeader";
 import EditProduct from "./EditProduct";
 import AddProduct from "./AddProduct";
+import SweetAlert from "sweetalert-react";
 
 const ProductTable = () => {
     const [productData, setProductData] = useState([])
     const [modalEdit, setModalEdit] = useState(false)
     const [modalAdd, setModalAdd] = useState(false)
-    const [del, setDel] = useState(null)
     const [dataa, setDataa] = useState({})
     const [file, setFile] = useState("")
+    const [deleteNotif, setDeleteNotif] = useState(false)
+    const [deleteId, setDeleteId] = useState()
 
     const getAllData = () => {
         axios.get("http://localhost:1212/api/book")
@@ -32,18 +34,15 @@ const ProductTable = () => {
             }).catch();
     }
 
-
     useEffect(() => {
-        axios.get("http://localhost:1212/api/book")
-            .then(res => {
-                setProductData(res.data)
-                console.log(res.data)
-            }).catch();
+        getAllData()
     },[])
 
 
     const toggleAdd = () => {
         setModalAdd(!modalAdd)
+        console.log("modal add status >>", modalAdd)
+        getAllData()
     }
 
     const toggleEdit = (val) => {
@@ -55,10 +54,16 @@ const ProductTable = () => {
         axios.get("http://localhost:1212/api/book/getImage/" + val).then(res => {
             setFile(res.data)
         }).catch()
+        console.log("modal edit status >>", modalEdit)
+    }
+
+    const showDeleteNotif = (id) => {
+        setDeleteNotif(!deleteNotif)
+        setDeleteId(id)
     }
 
     const deleteData = (id) => {
-        console.log("delete", id)
+        setDeleteNotif(!deleteNotif)
         axios.delete('http://localhost:1212/api/book/' + id).then(getAllData).catch(err => console.log(err))
     }
 
@@ -75,6 +80,7 @@ const ProductTable = () => {
     const onChangeToggleEdit = () => {
         setModalEdit(!modalEdit)
     }
+
 
     return (
         <Fragment>
@@ -152,25 +158,37 @@ const ProductTable = () => {
                                                                 }}>Edit</Button>
                                                         <Button outline className="mb-2 mr-2 btn-pill" color="danger"
                                                                 onClick={(e) => {
-                                                                    deleteData(row.original.id)
+                                                                    showDeleteNotif(row.original.id)
                                                                 }}>Delete</Button>
                                                     </div>
                                                 )
                                             }
                                         ]
                                     }]}
-                                defaultPageSize={5}
+                                defaultPageSize={15}
                                 className="-striped -highlight"
                             />
                         </CardBody>
                     </div>
                 </Card>
+
                 <EditProduct toggle={() => {
                     toggleEdit()
-                }} modal={modalEdit} data={dataa} file={file} onChangeToggle={onChangeToggleEdit}/>
+                }} modal={modalEdit} data={dataa} file={file} setProductData={setProductData}/>
                 <AddProduct toggle={() => {
                     toggleAdd()
-                }} modal={modalAdd} onChangeToggle={onChangeToggleAdd}/>
+                }} modal={modalAdd} setProductData={setProductData}/>
+
+
+                <SweetAlert
+                    title="Are you sure?"
+                    confirmButtonColor=""
+                    show={deleteNotif}
+                    text= {deleteId}
+                    showCancelButton
+                    onConfirm={() => {deleteData(deleteId)}}
+                    onCancel={() => {setDeleteNotif(!deleteNotif)}}/>
+
             </CSSTransitionGroup>
         </Fragment>
     )

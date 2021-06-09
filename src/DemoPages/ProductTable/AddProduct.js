@@ -13,6 +13,12 @@ const AddProduct = (props) => {
     const [price, setPrice] = useState("")
     const [file, setFile] = useState()
 
+    const getAllData = () => {
+        axios.get('http://localhost:1212/api/book').then(res => {
+            props.setProductData(res.data)
+        }).catch()
+    }
+
     const onSubmit = () => {
 
         const formData = new FormData();
@@ -36,10 +42,11 @@ const AddProduct = (props) => {
                 'content-type': 'multipart/mixed'
             }
         }
-        axios.post("http://localhost:1212/api/book/save", formData, config)
-            .then().catch()
+        // axios.post("http://localhost:1212/api/book/save", formData, config)
+        //     .then(getAllData).catch()
 
-        props.onChangeToggle()
+        // props.onChangeToggle()
+        props.toggle(false)
 
     }
 
@@ -101,7 +108,7 @@ const AddProduct = (props) => {
                             </Form>
                         </ModalBody>
                         <ModalFooter>
-                            <Button color="link" onClick={()=> {props.onChangeToggle(false)}}>Cancel</Button>
+                            <Button color="link" onClick={()=> {props.toggle(false)}}>Cancel</Button>
                             <Button color="primary" onClick={() => {onSubmit()}}>Save</Button>
                         </ModalFooter>
                     </Modal>

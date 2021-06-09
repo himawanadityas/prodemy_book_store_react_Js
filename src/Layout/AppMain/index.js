@@ -1,6 +1,7 @@
 import { Route, Redirect} from 'react-router-dom';
 import React, {Suspense, lazy, Fragment} from 'react';
-import Loader from 'react-loaders'
+import Loader from 'react-loaders';
+import logo from '../../assets/utils/images/Webp.net-resizeimage (1).png';
 
 import {
     ToastContainer,
@@ -24,7 +25,6 @@ const Academic = lazy(()=> import('../../DemoPages/Homepage/Categories/Academic'
 const Comic = lazy(()=> import('../../DemoPages/Homepage/Categories/Comic'));
 
 
-
 const AppMain = () => {
 
     return (
@@ -35,12 +35,12 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <div className="text-center">
-                            <Loader type="pacman"/>
+                            <img src={logo}/>
                         </div>
-                        <h4 className="mt-5">
-                            Let's to Homepage
-                            <small>Loading page, Please be patient!</small>
-                        </h4>
+                        {/*<h4 className="mt-5">*/}
+                        {/*    Let's to Homepage*/}
+                        {/*    <small>Loading page, Please be patient!</small>*/}
+                        {/*</h4>*/}
                     </div>
                 </div>
             }>
@@ -50,12 +50,12 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <div className="text-center">
-                            <Loader type="pacman"/>
+                            <img src={logo}/>
                         </div>
-                        <h4 className="mt-5">
-                            Let's to Product Table
-                            <small>Loading page, Please be patience!</small>
-                        </h4>
+                        {/*<h4 className="mt-5">*/}
+                        {/*    Let's to Product Table*/}
+                        {/*    <small>Loading page, Please be patience!</small>*/}
+                        {/*</h4>*/}
                     </div>
                 </div>
             }>

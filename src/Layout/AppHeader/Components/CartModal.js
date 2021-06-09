@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {
     Alert,
     Button, Card, CardFooter,
-    CardHeader, CustomInput, Dropdown, DropdownItem, DropdownMenu, DropdownToggle,
+    CardHeader, CustomInput, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Input,
     ListGroup,
     ListGroupItem,
     Modal,
@@ -22,21 +22,32 @@ const CartModal = (props) => {
     const [cartList, setCartList] = useState([])
     const [cartListEdited, setCartListEdited] = useState([])
     const [checkedState, setCheckedState] = useState([])
+    const [totalPrice, setTotalPrice] = useState(0)
 
 
     const getAllCartData = () => {
         axios.get('http://localhost:1212/api/cart').then(res => {
             setCartList(res.data)
+            setCheckedState([])
+            total(res.data)
         }).catch(err => {
             console.log(err)
         })
     }
-    useEffect(() => {
-        getAllCartData()
-    }, [])
+
+    const total = (val) => {
+        let price = 0
+        val.map((data) => {
+            price = price + data.subTotalHargaBuku
+            console.log("sub total")
+        })
+        console.log("cart edited >>")
+        console.log(price)
+        setTotalPrice(price);
+    }
 
     useEffect(() => {
-        setCheckedState([])
+        getAllCartData()
     }, [])
 
     const saveCart = () => {
@@ -63,13 +74,13 @@ const CartModal = (props) => {
         console.log("checked id > > ", dataCart)
         setCheckedState([])
         props.toggle(false)
-        getAllCartData()
-        alert()
+        // getAllCartData()
 
     }
 
     const cartEdited = (value) => {
         setCartList(value)
+        total(value)
     }
 
     const Checked = (e, id) => {
@@ -78,6 +89,7 @@ const CartModal = (props) => {
                 let checked = [...checkedState, id]
                 setCheckedState(checked)
                 console.log("check >> ", id)
+                console.log("checked array", checkedState)
             }
         } else {
             let unchecked = [...checkedState]
@@ -86,6 +98,7 @@ const CartModal = (props) => {
                 unchecked.splice(index, 1)
                 setCheckedState(unchecked)
                 console.log("uncheck >> ", id)
+                console.log("uncheck array", checkedState)
             }
         }
     }
@@ -98,9 +111,11 @@ const CartModal = (props) => {
                 getAllCartData
             ).catch()
         })
+        total(cartList)
 
         props.toggle(false)
     }
+
 
 
 
@@ -121,8 +136,21 @@ const CartModal = (props) => {
                                                           Checked(e, data.id)
                                                       }}/>
                                         ))}
+                                        <ListGroupItem>
+                <div className="todo-indicator bg-success"/>
+                <div className="widget-content p-0">
+                    <div className="widget-content-wrapper">
+                        <div className="widget-content-left mr-2">
+                        </div>
+                        <div className="widget-content-left flex2">
+                            <div className="widget-heading">
+                                Total : Rp {totalPrice} ,-
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ListGroupItem>
                                     </ListGroup>
-
                         </ModalBody>
                         <ModalFooter>
                             <Button color="danger" onClick={() => {

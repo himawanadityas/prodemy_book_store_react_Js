@@ -14,6 +14,8 @@ const CartList = (props) => {
         newData[props.index].kuantitasBuku = quantity;
         newData[props.index].subTotalHargaBuku = quantity * props.data.hargaBuku
         props.cartEdit(newData)
+
+
     }
 
     useEffect(() => {
@@ -22,22 +24,6 @@ const CartList = (props) => {
 
     return (
         <>
-            {/*// <tr>*/}
-            {/*//     <td>*/}
-            {/*        <Input type="checkbox" onChange={props.checked} id={props.id}/>*/}
-            {/*    </td>*/}
-            {/*    <td>*/}
-            {/*        <Input type="number" value={quantity == null ? props.data.kuantitasBuku : quantity} onChange={(e) => {*/}
-            {/*            quantityChange(e.target.value)*/}
-            {/*        }} onClick={(e) => {*/}
-            {/*            quantityChange(e.target.value)*/}
-            {/*        }}/>*/}
-            {/*    </td>*/}
-            {/*    <td>*/}
-            {/*        {subTotal}*/}
-            {/*    </td>*/}
-            {/*</tr>*/}
-
             <ListGroupItem>
                 <div className="todo-indicator bg-success"/>
                 <div className="widget-content p-0">

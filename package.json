@@ -140,7 +140,8 @@
     "sweetalert": "2.1.2",
     "sweetalert-react": "^0.4.11",
     "typescript": "^3.7.2",
-    "validator": "^12.1.0"
+    "validator": "^12.1.0",
+    "mdbreact": "^5.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

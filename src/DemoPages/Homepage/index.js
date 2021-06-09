@@ -4,8 +4,10 @@ import axios from "axios";
 
 import AppHeader from '../../Layout/AppHeader/';
 import AppSidebar from '../../Layout/AppSidebar/';
+import MyFooter from "../../Layout/AppFooter/MyFooter";
 import AppFooter from '../../Layout/AppFooter/';
-
+import logo from '../../assets/utils/images/Webp.net-resizeimage.png'
+import logoLight from '../../assets/utils/images/Webp.net-resizeimage (2).png'
 // Theme Options
 
 import ThemeOptions from '../../Layout/ThemeOptions/';
@@ -104,12 +106,12 @@ const Homepage = () => {
                     <AppHeader/>
                     <div className="app-main">
                         <div className="app-main__inner">
-                            <PageTitle
-                                heading="Search Result"
-                                subheading="The Best Seller Books and All Book Products in this Store"
-                                icon="pe-7s-diamond icon-gradient bg-premium-dark"
-                                breadcrumbPaths={[]}
-                            />
+                            {/*<PageTitle*/}
+                            {/*    heading="Search Result"*/}
+                            {/*    subheading="The Best Seller Books and All Book Products in this Store"*/}
+                            {/*    icon="pe-7s-diamond icon-gradient bg-premium-dark"*/}
+                            {/*    breadcrumbPaths={[]}*/}
+                            {/*/>*/}
 
                             <Jumbotron style={{backgroundImage: `url(${image})`, backgroundSize: 'cover', height: 300}}>
                                 <div className="search-wrapper active">
@@ -133,7 +135,6 @@ const Homepage = () => {
                                     }}/>
                                 ))}
                             </Row>
-
                             <AppFooter/>
                         </div>
                     </div>
@@ -161,13 +162,14 @@ const Homepage = () => {
                 <AppHeader/>
                 <div className="app-main">
                     <div className="app-main__inner">
-                        <PageTitle
-                            heading="Home"
-                            subheading="The Best Seller Books and All Book Products in this Store"
-                            icon="pe-7s-diamond icon-gradient bg-premium-dark"
-                            breadcrumbPaths={[]}
-                        />
+                        {/*<PageTitle*/}
+                        {/*    heading="Home"*/}
+                        {/*    subheading="The Best Seller Books and All Book Products in this Store"*/}
+                        {/*    icon="pe-7s-diamond icon-gradient bg-premium-dark"*/}
+                        {/*    breadcrumbPaths={[]}*/}
+                        {/*/>*/}
                         <Jumbotron style={{backgroundImage: `url(${image})`, backgroundSize: 'cover', height: 300}}>
+                            <img src={logo}/>
                             <div className="search-wrapper active">
                                 <div className="input-holder">
                                     <input type="text" className="search-input" placeholder="Search Books"
@@ -192,7 +194,10 @@ const Homepage = () => {
                             ))}
                         </Row>
                         <Jumbotron style={{backgroundImage: `url(${jumbotron2})`, backgroundSize: 'cover'}}>
-                            <h2 style={{textAlign: "right", color: "whitesmoke"}}>Best Seller</h2>
+                            <div>
+                                <img src={logoLight}/>
+                            </div>
+                            <h2 style={{textAlign: "left", color: "whitesmoke"}}>BEST SELLER</h2>
                         </Jumbotron>
                         <Row>
                             {recommendation.map((data, index) => (
@@ -206,7 +211,10 @@ const Homepage = () => {
                             ))}
                         </Row>
                         <Jumbotron style={{backgroundImage: `url(${jumbotron2})`, backgroundSize: 'cover'}}>
-                            <h2 style={{textAlign: "right", color: "whitesmoke"}}>Best Seller</h2>
+                            <div>
+                                <img src={logoLight}/>
+                            </div>
+                            <h2 style={{textAlign: "left", color: "whitesmoke"}}>RECOMMENDATION</h2>
                         </Jumbotron>
                         <Row>
                             {recommendation.map((data, index) => (
@@ -220,9 +228,11 @@ const Homepage = () => {
                             ))}
                         </Row>
 
-                        <AppFooter/>
+                        {/*<AppFooter/>*/}
+
                     </div>
                 </div>
+                {/*<MyFooter/>*/}
                 <SweetAlert
                     title="Added to Cart!"
                     confirmButtonColor=""
@@ -233,7 +243,8 @@ const Homepage = () => {
                         setShowNotif(false)
                     }}/>
             </CSSTransitionGroup>
-            <BestSeller/>
+            {/*<BestSeller/>*/}
+            <MyFooter/>
         </Fragment>);
 
 };

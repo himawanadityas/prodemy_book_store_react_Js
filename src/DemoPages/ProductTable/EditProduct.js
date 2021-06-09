@@ -24,6 +24,9 @@ const EditProduct = (props) => {
     const [price, setPrice] = useState(null)
     const [file, setFile] = useState(null)
 
+    const getAllData = () => {
+        axios.get('http://localhost:1212/api/book').then(res => {props.setProductData(res.data)}).catch()
+    }
 
     const onSubmit = () => {
 
@@ -50,11 +53,10 @@ const EditProduct = (props) => {
             }
         }
         axios.post("http://localhost:1212/api/book/save", formData, config)
-            .then(res => console.log(res.data)).catch()
+            .then(getAllData).catch()
 
-        props.onChangeToggle()
-        console.log(' SAVE >>')
-        console.log(file == null ? props.data : file)
+        // props.onChangeToggle()
+        props.toggle(false)
 
     }
 

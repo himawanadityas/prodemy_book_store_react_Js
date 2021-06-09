@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
 
 import { Slider, Spring } from 'react-burgers'
+import logo from "../../assets/utils/images/prodemy-book-store-ok (1).png"
 
 import AppMobileMenu from '../AppMobileMenu';
 
@@ -53,6 +54,9 @@ class HeaderLogo extends React.Component {
                     {/*    /!*</div>*!/*/}
                     {/*</div>*/}
                 {/*</div>*/}
+                <div>
+                    <img src={logo} sizes={2}/>
+                </div>
                 <AppMobileMenu/>
             </Fragment>
         )

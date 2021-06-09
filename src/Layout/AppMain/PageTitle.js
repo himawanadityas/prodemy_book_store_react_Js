@@ -15,14 +15,13 @@ class PageTitle extends Component {
         let {
             enablePageTitleIcon,
             enablePageTitleSubheading,
-            breadcrumbPaths,
             heading,
             icon,
             subheading
         } = this.props;
 
         // var arr = [<TitleComponent1 />, <TitleComponent2 />, <TitleComponent3 />]
-        breadcrumbPaths = ['home','book','my Breadcrumb'];
+        // breadcrumbPaths = ['home','book','my Breadcrumb'];
         return (
 
             <div className="app-page-title">
@@ -41,7 +40,7 @@ class PageTitle extends Component {
                         </div>
                     </div>
                     <div className="page-title-actions">
-                        <MyBreadcrumb paths={breadcrumbPaths}/>
+                        {/*<MyBreadcrumb paths={breadcrumbPaths}/>*/}
                     </div>
                 </div>
             </div>
