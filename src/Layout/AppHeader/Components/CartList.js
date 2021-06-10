@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button, CustomInput, Input, ListGroupItem} from "reactstrap";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCheck, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
+
 
 const CartList = (props) => {
     const [quantity, setQuantity] = useState(null)

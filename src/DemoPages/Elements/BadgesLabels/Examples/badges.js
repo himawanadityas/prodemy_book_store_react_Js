@@ -265,7 +265,7 @@ class BadgesExamples extends Component {
                                         </button>
 
                                         <button className="mb-2 mr-2 btn-icon btn-icon-only btn btn-link btn-sm">
-                                            <i className="pe-7s-settings btn-icon-wrapper font-size-xlg"> </i>
+                                            <i className="pe-7s-cart btn-icon-wrapper font-size-xlg"> </i>
                                             <span className="badge badge-pill badge-warning">2</span>
                                         </button>
                                         <button className="mb-2 mr-2 btn-icon btn-icon-only btn btn-link btn-sm">

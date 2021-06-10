@@ -2,16 +2,16 @@ import React from "react";
 import Type from "./Type";
 
 const initialState = {
-    cartList:[]
+    cartBadge : 0
 }
 
 const mainReducer = (state={...initialState}, action) => {
     switch (action.type) {
         case Type.SET_CART_LIST: {
-            const {cartUpdate} = action.payload
+            const {cartBadge} = action.payload
             return {
                 ...state,
-                cartList: cartUpdate
+                cartBadge: cartBadge
             }
         }
     }

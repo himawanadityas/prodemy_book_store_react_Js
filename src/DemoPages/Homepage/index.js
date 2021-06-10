@@ -244,7 +244,7 @@ const Homepage = () => {
                     }}/>
             </CSSTransitionGroup>
             {/*<BestSeller/>*/}
-            <MyFooter/>
+            {/*<MyFooter/>*/}
         </Fragment>);
 
 };

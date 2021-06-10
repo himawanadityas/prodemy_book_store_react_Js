@@ -7,6 +7,7 @@ import {
     CardTitle,
     Container
 } from 'reactstrap';
+import {IoIosAdd} from "react-icons/all";
 
 class ButtonsHorizontalIcons extends Component {
 
@@ -19,6 +20,11 @@ class ButtonsHorizontalIcons extends Component {
                             <Card className="main-card mb-3">
                                 <CardBody>
                                     <CardTitle>Solid P7 Icons</CardTitle>
+                                    {/*<Button className="mb-2 mr-2 btn-icon" color="primary">*/}
+                                    {/*    <i className="pe-7s-tools btn-icon-wrapper"> </i>*/}
+                                    {/*    Primary*/}
+                                    {/*</Button>*/}
+
                                     <Button className="mb-2 mr-2 btn-icon" color="primary">
                                         <i className="pe-7s-tools btn-icon-wrapper"> </i>
                                         Primary

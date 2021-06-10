@@ -1,5 +1,11 @@
 import ThemeOptions from './ThemeOptions';
+import mainReducer from "./mainReducer";
+import {combineReducers} from "redux";
 
-export default {
+
+const reducers = combineReducers({
     ThemeOptions
-};
+    }
+)
+
+export default reducers;

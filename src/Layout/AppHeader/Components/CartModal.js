@@ -14,15 +14,13 @@ import {
 import {IoIosCart} from "react-icons/io";
 import CartList from "./CartList";
 import axios from "axios";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCheck, faEllipsisH, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
-import avatar2 from "../../../assets/utils/images/avatars/2.jpg";
+
 
 const CartModal = (props) => {
     const [cartList, setCartList] = useState([])
-    const [cartListEdited, setCartListEdited] = useState([])
     const [checkedState, setCheckedState] = useState([])
     const [totalPrice, setTotalPrice] = useState(0)
+    const [disabledButton, setDisabledButton] = useState(false)
 
 
     const getAllCartData = () => {
@@ -37,13 +35,18 @@ const CartModal = (props) => {
 
     const total = (val) => {
         let price = 0
+        let qty = 0
         val.map((data) => {
             price = price + data.subTotalHargaBuku
+            qty = qty + data.kuantitasBuku
             console.log("sub total")
         })
         console.log("cart edited >>")
         console.log(price)
+        console.log(qty)
         setTotalPrice(price);
+        // setTotalQuantity(qty)
+
     }
 
     useEffect(() => {
@@ -74,7 +77,7 @@ const CartModal = (props) => {
         console.log("checked id > > ", dataCart)
         setCheckedState([])
         props.toggle(false)
-        // getAllCartData()
+
 
     }
 
@@ -88,8 +91,6 @@ const CartModal = (props) => {
             if ([...checkedState].indexOf(id) === -1) {
                 let checked = [...checkedState, id]
                 setCheckedState(checked)
-                console.log("check >> ", id)
-                console.log("checked array", checkedState)
             }
         } else {
             let unchecked = [...checkedState]
@@ -97,11 +98,18 @@ const CartModal = (props) => {
             if (index !== -1) {
                 unchecked.splice(index, 1)
                 setCheckedState(unchecked)
-                console.log("uncheck >> ", id)
-                console.log("uncheck array", checkedState)
             }
         }
+
     }
+    useEffect(() => {
+        if (checkedState.length === 0) {
+            setDisabledButton(true)
+        } else {
+            setDisabledButton(false)
+        }
+
+    })
 
     const deleteCart = () => {
 
@@ -116,51 +124,73 @@ const CartModal = (props) => {
         props.toggle(false)
     }
 
+    const toggle = () => {
+        props.toggle()
+        setCheckedState([])
+        getAllCartData()
+    }
 
+    const checkOut = () => {
+        let cartId = []
+        checkedState.map((data) => {
+            cartId.push({"id": data})
+        })
+        let toCheckout = {"idKeranjangDTOList": cartId}
+        // axios.post('http://localhost:1212/api/c/checkout', toCheckout).then().catch()
+        console.log(toCheckout)
+        props.toggle()
+    }
 
 
     return (
         <>
             <span className="d-inline-block mb-2 mr-2">
-                 <Modal isOpen={props.modal} toggle={props.toggle} className="modal-content">
-                        <ModalHeader toggle={props.toggle}><IoIosCart size={18}/> My Cart</ModalHeader>
+                 <Modal isOpen={props.modal} toggle={props.toggle} className="modal-content" backdrop={false}>
+                        <ModalHeader toggle={() => {
+                            toggle()
+                        }}><IoIosCart size={18}/> My Cart</ModalHeader>
                         <ModalBody>
-                                    <ListGroup className="todo-list-wrapper" flush>
-                                        {cartList.map((data, index) => (
-                                            <CartList key={index}
-                                                      index={index}
-                                                      data={data}
-                                                      cartEdit={cartEdited}
-                                                      dataArray={cartList}
-                                                      checked={(e) => {
-                                                          Checked(e, data.id)
-                                                      }}/>
-                                        ))}
-                                        <ListGroupItem>
-                <div className="todo-indicator bg-success"/>
-                <div className="widget-content p-0">
-                    <div className="widget-content-wrapper">
-                        <div className="widget-content-left mr-2">
-                        </div>
-                        <div className="widget-content-left flex2">
-                            <div className="widget-heading">
-                                Total : Rp {totalPrice} ,-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </ListGroupItem>
-                                    </ListGroup>
+                            <ListGroup className="todo-list-wrapper" flush>
+                                {cartList.map((data, index) => (
+                                    <CartList key={index}
+                                              index={index}
+                                              data={data}
+                                              cartEdit={cartEdited}
+                                              dataArray={cartList}
+                                              checked={(e) => {
+                                                  Checked(e, data.id)
+                                              }}
+                                    />
+                                ))}
+                                <ListGroupItem>
+                                        <div className="todo-indicator bg-success"/>
+                                            <div className="widget-content p-0">
+                                                <div className="widget-content-wrapper">
+                                                    <div className="widget-content-left mr-2">
+                                                        </div>
+                                                    <div className="widget-content-left flex2">
+                                                    <div className="widget-heading">
+                                                        Total : Rp {totalPrice} ,-
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </ListGroupItem>
+                            </ListGroup>
                         </ModalBody>
                         <ModalFooter>
                             <Button color="danger" onClick={() => {
                                 deleteCart()
-                            }}>Delete</Button>
+                            }} disabled={disabledButton}>Delete</Button>
                             <Button color="success" onClick={() => {
                                 saveCart()
                             }}>Save</Button>
-                            <Button color="link" onClick={props.toggle}>Cancel</Button>
-                            <Button color="primary" onClick={props.toggle}>CheckOut!</Button>
+                            <Button color="light" onClick={() => {
+                                toggle()
+                            }}>Cancel</Button>
+                            <Button color="primary" onClick={() => {
+                                checkOut()
+                            }} disabled={disabledButton}>CheckOut!</Button>
                         </ModalFooter>
                     </Modal>
             </span>

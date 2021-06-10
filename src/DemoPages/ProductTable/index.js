@@ -4,7 +4,7 @@ import axios from "axios";
 import {
     Row, Col,
     Card, CardBody,
-    UncontrolledButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle, Button
+    UncontrolledButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle, Button, CardHeader
 } from 'reactstrap';
 import avatar2 from "../../assets/utils/images/avatars/2.jpg";
 
@@ -36,7 +36,7 @@ const ProductTable = () => {
 
     useEffect(() => {
         getAllData()
-    },[])
+    }, [])
 
 
     const toggleAdd = () => {
@@ -67,21 +67,6 @@ const ProductTable = () => {
         axios.delete('http://localhost:1212/api/book/' + id).then(getAllData).catch(err => console.log(err))
     }
 
-    const onChangeToggleAdd = () => {
-        setModalAdd(!modalAdd)
-            // axios.get("http://localhost:1212/api/book")
-            //     .then(res => {
-            //         let product = [...productData]
-            //         product.push(res.data)
-            //         console.log(product)
-            //     }).catch();
-
-    }
-    const onChangeToggleEdit = () => {
-        setModalEdit(!modalEdit)
-    }
-
-
     return (
         <Fragment>
             <PageTitle
@@ -101,9 +86,14 @@ const ProductTable = () => {
 
                 <Card className="main-card m-5">
                     <div className="mb-3">
-                        <Button outline className="mb-2 mr-2 btn-pill" color="primary" onClick={(e) => {
-                            toggleAdd()
-                        }}>Add</Button>
+                        <CardHeader>
+                            <div className="btn-actions-pane-right">
+                            <Button outline className="mb-2 mr-2 btn-pill" color="primary" onClick={(e) => {
+                                toggleAdd()
+                            }}><i className="lnr-plus-circle"> </i>Add</Button>
+                            </div>
+                        </CardHeader>
+
                         <CardBody>
                             <ReactTable
                                 data={productData}
@@ -152,14 +142,14 @@ const ProductTable = () => {
                                                 filterable: false,
                                                 Cell: row => (
                                                     <div className="d-block w-100 text-center">
-                                                        <Button outline className="mb-2 mr-2 btn-pill" color="primary"
+                                                        <Button outline className="mb-2 mr-2 btn-pill" color="success"
                                                                 onClick={(e) => {
                                                                     toggleEdit(row.original.id)
-                                                                }}>Edit</Button>
+                                                                }}><i className="lnr-pencil"> </i>Edit</Button>
                                                         <Button outline className="mb-2 mr-2 btn-pill" color="danger"
                                                                 onClick={(e) => {
                                                                     showDeleteNotif(row.original.id)
-                                                                }}>Delete</Button>
+                                                                }}><i className="lnr-trash"> </i>Delete</Button>
                                                     </div>
                                                 )
                                             }
@@ -184,10 +174,14 @@ const ProductTable = () => {
                     title="Are you sure?"
                     confirmButtonColor=""
                     show={deleteNotif}
-                    text= {deleteId}
+                    text={deleteId}
                     showCancelButton
-                    onConfirm={() => {deleteData(deleteId)}}
-                    onCancel={() => {setDeleteNotif(!deleteNotif)}}/>
+                    onConfirm={() => {
+                        deleteData(deleteId)
+                    }}
+                    onCancel={() => {
+                        setDeleteNotif(!deleteNotif)
+                    }}/>
 
             </CSSTransitionGroup>
         </Fragment>

@@ -43,7 +43,7 @@ class Header extends React.Component {
                         </div>
                         <div className="app-header-right">
                             {/*<SearchBox/>*/}
-                            <HeaderDots/>
+                            <HeaderDots badge={this.props.badge}/>
                             {/*<UserBox/>*/}
                             {/*<HeaderRightDrawer/>*/}
                         </div>
@@ -53,6 +53,7 @@ class Header extends React.Component {
         );
     }
 }
+
 
 const mapStateToProps = state => ({
     enableHeaderShadow: state.ThemeOptions.enableHeaderShadow,

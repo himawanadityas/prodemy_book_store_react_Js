@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Button, Form, FormGroup, Input, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {IoIosSettings} from "react-icons/io";
+import {Label} from "recharts";
 
 const AddProduct = (props) => {
     const [title, setTitle] = useState("")
@@ -42,8 +43,8 @@ const AddProduct = (props) => {
                 'content-type': 'multipart/mixed'
             }
         }
-        // axios.post("http://localhost:1212/api/book/save", formData, config)
-        //     .then(getAllData).catch()
+        axios.post("http://localhost:1212/api/book/save", formData, config)
+            .then(getAllData).catch()
 
         // props.onChangeToggle()
         props.toggle(false)
@@ -58,6 +59,7 @@ const AddProduct = (props) => {
                         <ModalBody>
                             <Form>
                                 <FormGroup>
+                                    <Label>Judul Buku</Label>
                                     <Input type="text" name="title" id="title"
                                            placeholder="Judul Buku" onChange={(e) => {
                                         setTitle(e.target.value)

@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState, useEffect} from 'react';
 
 // import Ionicon from 'react-ionicons';
 import {
@@ -81,209 +81,88 @@ function getTabs() {
     }));
 }
 
-const clickMe = () => {
-    return {
+// class HeaderDots extends React.Component {
+//
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             modal: false
+//         };
+//         this.toggle = this.toggle.bind(this);
+//     }
+//
+//     toggle() {
+//         this.setState({
+//             modal: !this.state.modal
+//         });
+//     }
+//
+//     toggleChange() {
+//         this.setState({
+//             modal: false
+//         });
+//     }
+//
+//     render() {
+//         return (
+//             <Fragment>
+//                 <div className="header-dots">
+//                     <div className="icon-wrapper icon-wrapper-alt" onClick={this.toggle}>
+//                         <div className="icon-wrapper-bg"/>
+//                         {/*<IoIosGrid color="#3f6ad8" fontSize="23px"/>*/}
+//                         <IoIosCart color="#985534" fontSize="23px"/>
+//                         <span className="badge badge-pill badge-warning">2</span>
+//                     </div>
+//                     <div className="icon-wrapper icon-wrapper-alt">
+//                         <div className="icon-wrapper-bg"/>
+//                         <IoIosNotifications color="#985534" fontSize="23px"/>
+//                         <div className="badge badge-dot badge-dot-sm badge-danger">Notifications</div>
+//                     </div>
+//                     <div className="icon-wrapper icon-wrapper-alt">
+//                         <div className="icon-wrapper-bg"/>
+//                         <IoIosContact color="#985534" fontSize="23px"/>
+//                         <div className="badge badge-dot badge-dot-sm badge-danger">Notifications</div>
+//                     </div>
+//                     <CartModal toggle={this.toggle} modal={this.state.modal} toggleChange={this.toggleChange}/>
+//                 </div>
+//             </Fragment>
+//         )
+//     }
+// }
 
-    }
-}
 
-class HeaderDots extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            // active: false,
-            modal: false
-        };
-        this.toggle = this.toggle.bind(this);
-    }
-    toggle() {
-        this.setState({
-            modal: !this.state.modal
-        });
-    }
-    toggleChange() {
-        this.setState({
-            modal: false
-        });
-    }
+const HeaderDots = () => {
+    const [modal, setModal] = useState()
+//     const [cartBadge, setCartBadge] = useState(0)
+//
+// const quantityBadge = (value) => {
+//         setCartBadge(value)
+//         console.log("cart badge header dot >",value)}
 
-    render() {
-        return (
-            <Fragment>
-                <div className="header-dots">
-                    <div className="icon-wrapper icon-wrapper-alt" onClick={this.toggle}>
-                        <div className="icon-wrapper-bg"/>
-                        {/*<IoIosGrid color="#3f6ad8" fontSize="23px"/>*/}
-                        <IoIosCart color="#985534" fontSize="23px"/>
-                    </div>
-                    <div className="icon-wrapper icon-wrapper-alt">
-                        <div className="icon-wrapper-bg"/>
-                        <IoIosNotifications color="#985534" fontSize="23px"/>
-                        <div className="badge badge-dot badge-dot-sm badge-danger">Notifications</div>
-                    </div>
-                    <div className="icon-wrapper icon-wrapper-alt">
-                        <div className="icon-wrapper-bg"/>
-                        <IoIosContact color="#985534" fontSize="23px"/>
-                        <div className="badge badge-dot badge-dot-sm badge-danger">Notifications</div>
-                    </div>
-                    <CartModal toggle={this.toggle} modal={this.state.modal} toggleChange={this.toggleChange}/>
 
-                    {/*<UncontrolledDropdown>*/}
-                    {/*    <DropdownToggle className="p-0 mr-2" color="link">*/}
-                    {/*        <div className="icon-wrapper icon-wrapper-alt">*/}
-                    {/*            <div className="icon-wrapper-bg"/>*/}
-                    {/*            /!*<IoIosGrid color="#3f6ad8" fontSize="23px"/>*!/*/}
-                    {/*            <IoIosCart color="#985534" fontSize="23px"/>*/}
-                    {/*        </div>*/}
-                    {/*    </DropdownToggle>*/}
-                    {/*    <DropdownMenu right className="dropdown-menu-xl rm-pointers">*/}
-                    {/*        <div className="dropdown-menu-header">*/}
-                    {/*            <div className="dropdown-menu-header-inner bg-plum-plate">*/}
-                    {/*                <div className="menu-header-image"*/}
-                    {/*                     style={{*/}
-                    {/*                         backgroundImage: 'url(' + bg4 + ')'*/}
-                    {/*                     }}*/}
-                    {/*                />*/}
-                    {/*                <div className="menu-header-content text-white">*/}
-                    {/*                    <h5 className="menu-header-title">Grid Dashboard</h5>*/}
-                    {/*                    <h6 className="menu-header-subtitle">Easy grid navigation inside dropdowns</h6>*/}
-                    {/*                </div>*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="grid-menu grid-menu-xl grid-menu-3col">*/}
-                    {/*            <Row className="no-gutters">*/}
-                    {/*                <Col xl="4" sm="6">*/}
-                    {/*                    <Button*/}
-                    {/*                        className="btn-icon-vertical btn-square btn-transition"*/}
-                    {/*                        outline color="link">*/}
-                    {/*                        <i className="pe-7s-world icon-gradient bg-night-fade btn-icon-wrapper btn-icon-lg mb-3"> </i>*/}
-                    {/*                        Automation*/}
-                    {/*                    </Button>*/}
-                    {/*                </Col>*/}
-                    {/*                <Col xl="4" sm="6">*/}
-                    {/*                    <Button*/}
-                    {/*                        className="btn-icon-vertical btn-square btn-transition"*/}
-                    {/*                        outline color="link">*/}
-                    {/*                        <i className="pe-7s-piggy icon-gradient bg-night-fade btn-icon-wrapper btn-icon-lg mb-3"> </i>*/}
-                    {/*                        Reports*/}
-                    {/*                    </Button>*/}
-                    {/*                </Col>*/}
-                    {/*                <Col xl="4" sm="6">*/}
-                    {/*                    <Button*/}
-                    {/*                        className="btn-icon-vertical btn-square btn-transition"*/}
-                    {/*                        outline color="link">*/}
-                    {/*                        <i className="pe-7s-config icon-gradient bg-night-fade btn-icon-wrapper btn-icon-lg mb-3"> </i>*/}
-                    {/*                        Settings*/}
-                    {/*                    </Button>*/}
-                    {/*                </Col>*/}
-                    {/*                <Col xl="4" sm="6">*/}
-                    {/*                    <Button*/}
-                    {/*                        className="btn-icon-vertical btn-square btn-transition"*/}
-                    {/*                        outline color="link">*/}
-                    {/*                        <i className="pe-7s-browser icon-gradient bg-night-fade btn-icon-wrapper btn-icon-lg mb-3"> </i>*/}
-                    {/*                        Content*/}
-                    {/*                    </Button>*/}
-                    {/*                </Col>*/}
-                    {/*                <Col xl="4" sm="6">*/}
-                    {/*                    <Button*/}
-                    {/*                        className="btn-icon-vertical btn-square btn-transition"*/}
-                    {/*                        outline color="link">*/}
-                    {/*                        <i className="pe-7s-hourglass icon-gradient bg-night-fade btn-icon-wrapper btn-icon-lg mb-3"> </i>*/}
-                    {/*                        Activity*/}
-                    {/*                    </Button>*/}
-                    {/*                </Col>*/}
-                    {/*                <Col xl="4" sm="6">*/}
-                    {/*                    <Button*/}
-                    {/*                        className="btn-icon-vertical btn-square btn-transition"*/}
-                    {/*                        outline color="link">*/}
-                    {/*                        <i className="pe-7s-world icon-gradient bg-night-fade btn-icon-wrapper btn-icon-lg mb-3"> </i>*/}
-                    {/*                        Contacts*/}
-                    {/*                    </Button>*/}
-                    {/*                </Col>*/}
-                    {/*            </Row>*/}
-                    {/*        </div>*/}
-                    {/*        <Nav vertical>*/}
-                    {/*            <NavItem className="nav-item-divider"/>*/}
-                    {/*            <NavItem className="nav-item-btn text-center">*/}
-                    {/*                <Button size="sm" className="btn-shadow" color="primary">*/}
-                    {/*                    Follow-ups*/}
-                    {/*                </Button>*/}
-                    {/*            </NavItem>*/}
-                    {/*        </Nav>*/}
-                    {/*    </DropdownMenu>*/}
-                    {/*</UncontrolledDropdown>*/}
-                    {/*<UncontrolledDropdown>*/}
-                    {/*    <DropdownToggle className="p-0 mr-2" color="link">*/}
-                    {/*        <div className="icon-wrapper icon-wrapper-alt">*/}
-                    {/*            <div className="icon-wrapper-bg"/>*/}
-                    {/*            <IoIosNotifications color="#985534" fontSize="23px"/>*/}
-                    {/*            <div className="badge badge-dot badge-dot-sm badge-danger">Notifications</div>*/}
-                    {/*        </div>*/}
-                    {/*    </DropdownToggle>*/}
-                    {/*    <DropdownMenu right className="dropdown-menu-xl rm-pointers">*/}
-                    {/*        <div className="dropdown-menu-header mb-0">*/}
-                    {/*            <div className="dropdown-menu-header-inner bg-deep-blue">*/}
-                    {/*                <div className="menu-header-image opacity-1"*/}
-                    {/*                     style={{*/}
-                    {/*                         backgroundImage: 'url(' + city3 + ')'*/}
-                    {/*                     }}*/}
-                    {/*                />*/}
-                    {/*                <div className="menu-header-content text-dark">*/}
-                    {/*                    <h5 className="menu-header-title">Notifications</h5>*/}
-                    {/*                    <h6 className="menu-header-subtitle">You have <b>21</b> unread messages</h6>*/}
-                    {/*                </div>*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*        <Tabs tabsWrapperClass="body-tabs body-tabs-alt" transform={false} showInkBar={true}*/}
-                    {/*              items={getTabs()}/>*/}
-                    {/*        <Nav vertical>*/}
-                    {/*            <NavItem className="nav-item-divider"/>*/}
-                    {/*            <NavItem className="nav-item-btn text-center">*/}
-                    {/*                <Button size="sm" className="btn-shadow btn-wide btn-pill" color="focus">*/}
-                    {/*                    View Latest Changes*/}
-                    {/*                </Button>*/}
-                    {/*            </NavItem>*/}
-                    {/*        </Nav>*/}
-                    {/*    </DropdownMenu>*/}
-                    {/*</UncontrolledDropdown>*/}
-                    {/*<UncontrolledDropdown>*/}
-                    {/*    <DropdownToggle className="p-0 mr-2" color="link">*/}
-                    {/*        <div className="icon-wrapper icon-wrapper-alt">*/}
-                    {/*            <div className="icon-wrapper-bg"/>*/}
-                    {/*            <IoIosContact color="#985534" fontSize="23px"/>*/}
-                    {/*            <div className="badge badge-dot badge-dot-sm badge-danger">Notifications</div>*/}
-                    {/*        </div>*/}
-                    {/*    </DropdownToggle>*/}
-                    {/*    <DropdownMenu right className="dropdown-menu-xl rm-pointers">*/}
-                    {/*        <div className="dropdown-menu-header mb-0">*/}
-                    {/*            <div className="dropdown-menu-header-inner bg-deep-blue">*/}
-                    {/*                <div className="menu-header-image opacity-1"*/}
-                    {/*                     style={{*/}
-                    {/*                         backgroundImage: 'url(' + city3 + ')'*/}
-                    {/*                     }}*/}
-                    {/*                />*/}
-                    {/*                <div className="menu-header-content text-dark">*/}
-                    {/*                    <h5 className="menu-header-title">Notifications</h5>*/}
-                    {/*                    <h6 className="menu-header-subtitle">You have <b>21</b> unread messages</h6>*/}
-                    {/*                </div>*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*        <Tabs tabsWrapperClass="body-tabs body-tabs-alt" transform={false} showInkBar={true}*/}
-                    {/*              items={getTabs()}/>*/}
-                    {/*        <Nav vertical>*/}
-                    {/*            <NavItem className="nav-item-divider"/>*/}
-                    {/*            <NavItem className="nav-item-btn text-center">*/}
-                    {/*                <Button size="sm" className="btn-shadow btn-wide btn-pill" color="focus">*/}
-                    {/*                    View Latest Changes*/}
-                    {/*                </Button>*/}
-                    {/*            </NavItem>*/}
-                    {/*        </Nav>*/}
-                    {/*    </DropdownMenu>*/}
-                    {/*</UncontrolledDropdown>*/}
+    return (
+        <Fragment>
+            <div className="header-dots">
+                <div className="icon-wrapper icon-wrapper-alt" onClick={() => {setModal(!modal)}}>
+                    <div className="icon-wrapper-bg"/>
+                    <IoIosCart color="#985534" fontSize="23px"/>
+                    {/*<span className="badge badge-pill badge-warning">{cartBadge}</span>*/}
                 </div>
-            </Fragment>
-        )
-    }
+                <div className="icon-wrapper icon-wrapper-alt">
+                    <div className="icon-wrapper-bg"/>
+                    <IoIosNotifications color="#985534" fontSize="23px"/>
+                    <div className="badge badge-dot badge-dot-sm badge-danger">Notifications</div>
+                </div>
+                <div className="icon-wrapper icon-wrapper-alt">
+                    <div className="icon-wrapper-bg"/>
+                    <IoIosContact color="#985534" fontSize="23px"/>
+                    <div className="badge badge-dot badge-dot-sm badge-danger">Notifications</div>
+                </div>
+                <CartModal toggle={() => {setModal(!modal)}} modal={modal} toggleChange={() => {setModal(false)}}/>
+            </div>
+        </Fragment>
+    )
+
 }
 
 export default HeaderDots;
