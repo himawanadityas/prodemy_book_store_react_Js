@@ -106,13 +106,6 @@ const Homepage = () => {
                     <AppHeader/>
                     <div className="app-main">
                         <div className="app-main__inner">
-                            {/*<PageTitle*/}
-                            {/*    heading="Search Result"*/}
-                            {/*    subheading="The Best Seller Books and All Book Products in this Store"*/}
-                            {/*    icon="pe-7s-diamond icon-gradient bg-premium-dark"*/}
-                            {/*    breadcrumbPaths={[]}*/}
-                            {/*/>*/}
-
                             <Jumbotron style={{backgroundImage: `url(${image})`, backgroundSize: 'cover', height: 300}}>
                                 <div className="search-wrapper active">
                                     <div className="input-holder">
@@ -162,12 +155,6 @@ const Homepage = () => {
                 <AppHeader/>
                 <div className="app-main">
                     <div className="app-main__inner">
-                        {/*<PageTitle*/}
-                        {/*    heading="Home"*/}
-                        {/*    subheading="The Best Seller Books and All Book Products in this Store"*/}
-                        {/*    icon="pe-7s-diamond icon-gradient bg-premium-dark"*/}
-                        {/*    breadcrumbPaths={[]}*/}
-                        {/*/>*/}
                         <Jumbotron style={{backgroundImage: `url(${image})`, backgroundSize: 'cover', height: 300}}>
                             <img src={logo}/>
                             <div className="search-wrapper active">

@@ -37,10 +37,6 @@ const AppMain = () => {
                         <div className="text-center">
                             <img src={logo}/>
                         </div>
-                        {/*<h4 className="mt-5">*/}
-                        {/*    Let's to Homepage*/}
-                        {/*    <small>Loading page, Please be patient!</small>*/}
-                        {/*</h4>*/}
                     </div>
                 </div>
             }>
@@ -52,10 +48,6 @@ const AppMain = () => {
                         <div className="text-center">
                             <img src={logo}/>
                         </div>
-                        {/*<h4 className="mt-5">*/}
-                        {/*    Let's to Product Table*/}
-                        {/*    <small>Loading page, Please be patience!</small>*/}
-                        {/*</h4>*/}
                     </div>
                 </div>
             }>
@@ -228,22 +220,51 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <div className="text-center">
-                            <Loader type="pacman"/>
+                            <img src={logo}/>
                         </div>
-                        <h4 className="mt-5">
-                            Let's to Homepage
-                            <small>Loading page, Please be patient!</small>
-                        </h4>
+                    </div>
+                </div>
+            }>
+                <Route path="/academic" component={Academic}/>
+            </Suspense>
+            <Suspense fallback={
+                <div className="loader-container">
+                    <div className="loader-container-inner">
+                        <div className="text-center">
+                            <img src={logo}/>
+                        </div>
                     </div>
                 </div>
             }>
                 <Route path="/novel" component={Novel}/>
             </Suspense>
+            <Suspense fallback={
+                <div className="loader-container">
+                    <div className="loader-container-inner">
+                        <div className="text-center">
+                            <img src={logo}/>
+                        </div>
+                    </div>
+                </div>
+            }>
+                <Route path="/comic" component={Comic}/>
+            </Suspense>
+            <Suspense fallback={
+                <div className="loader-container">
+                    <div className="loader-container-inner">
+                        <div className="text-center">
+                            <img src={logo}/>
+                        </div>
+                    </div>
+                </div>
+            }>
+                <Route path="/family" component={Family}/>
+            </Suspense>
 
 
 
             <Route exact path="/" render={() => (
-                <Redirect to="/dashboards/crm"/>
+                <Redirect to="/home"/>
             )}/>
             <ToastContainer/>
         </Fragment>
