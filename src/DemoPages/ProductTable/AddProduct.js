@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import axios from "axios";
-import {Button, Form, FormGroup, Input, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
+import {Button, Form, FormGroup, Input, Modal, ModalBody, ModalFooter, ModalHeader, Label} from "reactstrap";
 import {IoIosSettings} from "react-icons/io";
-import {Label} from "recharts";
 
 const AddProduct = (props) => {
     const [title, setTitle] = useState("")
@@ -55,47 +54,53 @@ const AddProduct = (props) => {
         <>
             <span className="d-inline-block mb-2 mr-2">
                  <Modal isOpen={props.modal} toggle={props.toggle}>
-                        <ModalHeader toggle={props.toggle}><IoIosSettings size={20}/>Edit Product</ModalHeader>
+                        <ModalHeader toggle={props.toggle}><IoIosSettings size={20}/>Add Product</ModalHeader>
                         <ModalBody>
                             <Form>
                                 <FormGroup>
-                                    <Label>Judul Buku </Label>
+                                    <Label>Book Title : </Label>
                                     <Input type="text" name="title" id="title"
                                            placeholder="Judul Buku" onChange={(e) => {
                                         setTitle(e.target.value)
                                     }}/>
                                 </FormGroup>
                                 <FormGroup>
+                                    <Label>Year : </Label>
                                     <Input type="text" name="tahun" id="tahun"
                                            placeholder="Tahun Terbit" onChange={(e) => {
                                         setYear(e.target.value)
                                      }}/>
                                 </FormGroup>
                                 <FormGroup>
+                                    <Label>Author : </Label>
                                     <Input type="text" name="namaPengarang" id="pengarang"
                                            placeholder="Pengarang" onChange={(e) => {
                                         setAuthor(e.target.value)
                                     }}/>
                                 </FormGroup>
                                 <FormGroup>
+                                    <Label>Category : </Label>
                                     <Input type="text" name="namaKategori" id="kategori"
                                            placeholder="Kategori" onChange={(e) => {
                                         setCategory(e.target.value)
                                     }}/>
                                 </FormGroup>
                                 <FormGroup>
+                                    <Label>Publisher : </Label>
                                     <Input type="text" name="penerbit" id="penerbit"
                                            placeholder="Penerbit" onChange={(e) => {
                                         setPublisher(e.target.value)
                                     }}/>
                                 </FormGroup>
                                 <FormGroup>
+                                    <Label>Stock : </Label>
                                     <Input type="number" name="stock" id="stock"
                                            placeholder="Stok" min={0} onChange={(e) => {
                                         setStock(e.target.value)
                                     }}/>
                                 </FormGroup>
                                 <FormGroup>
+                                    <Label>Price : </Label>
                                     <Input type="text" name="price" id="price"
                                            placeholder="Harga" onChange={(e) => {
                                         setPrice(e.target.value)

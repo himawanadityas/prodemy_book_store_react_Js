@@ -68,56 +68,55 @@ const EditProduct = (props) => {
                         <ModalBody>
                             <Form>
                                 <FormGroup>
-                                    <Label>Judul : {props.data.judulBuku}</Label>
+                                    <Label>Book Title : {props.data.judulBuku}</Label>
                                     <Input type="text" name="title" id="title"
                                            placeholder="Judul Buku" onChange={(e) => {
                                         setTitle(e.target.value)
                                     }}/>
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label>Tahun Terbit : {props.data.tahunTerbit}</Label>
+                                    <Label>Year : {props.data.tahunTerbit}</Label>
                                     <Input type="text" name="tahun" id="tahun"
                                            placeholder="Tahun Terbit" onChange={(e) => {
                                         setYear(e.target.value)
                                     }}/>
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label>Pengarang : {props.data.namaPengarang}</Label>
+                                    <Label>Author : {props.data.namaPengarang}</Label>
                                     <Input type="text" name="namaPengarang" id="pengarang"
                                            placeholder="Pengarang" onChange={(e) => {
                                         setAuthor(e.target.value)
                                     }}/>
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label>Kategori : {props.data.namaKategori}</Label>
+                                    <Label>Category : {props.data.namaKategori}</Label>
                                     <Input type="text" name="namaKategori" id="kategori"
                                            placeholder="Kategori" onChange={(e) => {
                                         setCategory(e.target.value)
                                     }}/>
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label>Penerbit : {props.data.namaPenerbit}</Label>
+                                    <Label>Publisher : {props.data.namaPenerbit}</Label>
                                     <Input type="text" name="penerbit" id="penerbit"
                                            placeholder="Penerbit" onChange={(e) => {
                                         setPublisher(e.target.value)
                                     }}/>
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label>Stok : {props.data.stokBuku}</Label>
+                                    <Label>Stock : {props.data.stokBuku}</Label>
                                     <Input type="number" name="stock" id="stock"
                                            placeholder="Stok" min={1} onChange={(e) => {
                                         setStock(e.target.value)
                                     }}/>
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label>Harga : {props.data.hargaBuku}</Label>
+                                    <Label>Price : {props.data.hargaBuku}</Label>
                                     <Input type="text" name="price" id="price"
                                            placeholder="Harga" onChange={(e) => {
                                         setPrice(e.target.value)
                                     }}/>
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label>Judul : {props.data.judulBuku}</Label>
                                     <Input type="file" name="file" id="file" onChange={(e) => {
                                         setFile(e.target.files[0])
                                     }}

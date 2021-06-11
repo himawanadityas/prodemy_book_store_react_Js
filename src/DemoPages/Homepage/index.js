@@ -64,6 +64,10 @@ const Homepage = () => {
             setRecommendation(res.data)
             console.log(res.data)
         }).catch()
+        axios.get('http://localhost:1212/api/best-seller').then(res => {
+            setBestSeller(res.data)
+            console.log(res.data)
+        }).catch()
     }, [])
 
     const addToCart = (value) => {
@@ -187,7 +191,7 @@ const Homepage = () => {
                             <h2 style={{textAlign: "left", color: "whitesmoke"}}>BEST SELLER</h2>
                         </Jumbotron>
                         <Row>
-                            {recommendation.map((data, index) => (
+                            {bestSeller.map((data, index) => (
 
                                 <ProductCard key={index} data={data} title={data.judulBuku}
                                              subtitle={data.hargaBuku}

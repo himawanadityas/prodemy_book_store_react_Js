@@ -65,12 +65,6 @@ const ProductTable = () => {
 
     return (
         <Fragment>
-            <PageTitle
-                heading="Product Table"
-                subheading="Table for update the product"
-                icon="pe-7s-drawer icon-gradient bg-happy-itmeo"
-                breadcrumbPaths={['Home', 'Product Table']}
-            />
             <CSSTransitionGroup
                 component="div"
                 transitionName="TabsAnimation"
@@ -78,85 +72,129 @@ const ProductTable = () => {
                 transitionAppearTimeout={1000}
                 transitionEnter={false}
                 transitionLeave={false}>
+
                 <Header/>
+                <div className="app-main">
+                    <div className="app-main__inner">
+                        <Card className="main-card m-5" >
+                            <div className="mb-3">
+                                <CardHeader>
+                                    <div className="btn-actions-pane-right">
+                                        <Button outline className="mb-2 mr-2 btn-pill" color="primary" onClick={(e) => {
+                                            toggleAdd()
+                                        }}><i className="lnr-plus-circle"> </i>Add</Button>
+                                    </div>
+                                </CardHeader>
 
-                <Card className="main-card m-5">
-                    <div className="mb-3">
-                        <CardHeader>
-                            <div className="btn-actions-pane-right">
-                            <Button outline className="mb-2 mr-2 btn-pill" color="primary" onClick={(e) => {
-                                toggleAdd()
-                            }}><i className="lnr-plus-circle"> </i>Add</Button>
-                            </div>
-                        </CardHeader>
-
-                        <CardBody>
-                            <ReactTable
-                                data={productData}
-                                filterable
-                                columns={[{
-                                    columns: [
-                                        // {
-                                        //     Header: '1',
-                                        //     accessor: 'gambar',
-                                        //     Cell: row => (
-                                        //         <div>
-                                        //             <div className="widget-content p-0">
-                                        //                 <div className="widget-content-wrapper">
-                                        //                     <div className="widget-content-left mr-3">
-                                        //                         <div className="widget-content-left">
-                                        //                             <img width={52}
-                                        //                                  src={"data:image/*;base64"}
-                                        //                             />
-                                        //                         </div>
-                                        //                     </div>
-                                        //                 </div>
-                                        //             </div>
-                                        //         </div>
-                                        //     )
-                                        // },
-                                        {
-                                            Header: 'Book',
-                                            accessor: 'judulBuku'
+                                <CardBody>
+                                    <ReactTable
+                                        data={productData}
+                                        filterable
+                                        columns={[{
+                                            columns: [
+                                                {
+                                                    Header: 'Book',
+                                                    accessor: 'judulBuku'
+                                                },
+                                                {
+                                                    Header: 'Stock',
+                                                    accessor: 'stokBuku'
+                                                },
+                                                {
+                                                    Header: 'Price',
+                                                    accessor: 'hargaBuku'
+                                                },
+                                            ]
                                         },
-                                        {
-                                            Header: 'Stock',
-                                            accessor: 'stokBuku'
-                                        },
-                                        {
-                                            Header: 'Price',
-                                            accessor: 'hargaBuku'
-                                        },
-                                    ]
-                                },
-                                    {
-                                        columns: [
-
                                             {
-                                                Header: 'Actions',
-                                                accessor: 'actions',
-                                                filterable: false,
-                                                Cell: row => (
-                                                    <div className="d-block w-100 text-center">
-                                                        <Button outline className="mb-2 mr-2 btn-pill" color="success"
-                                                                onClick={(e) => {
-                                                                    toggleEdit(row.original.id)
-                                                                }}><i className="lnr-pencil"> </i>Edit</Button>
-                                                        <Button outline className="mb-2 mr-2 btn-pill" color="danger"
-                                                                onClick={(e) => {
-                                                                    showDeleteNotif(row.original.id)
-                                                                }}><i className="lnr-trash"> </i>Delete</Button>
-                                                    </div>
-                                                )
-                                            }
-                                        ]
-                                    }]}
-                                defaultPageSize={15}
-                                className="-striped -highlight"
-                            />
-                        </CardBody>
+                                                columns: [
+
+                                                    {
+                                                        Header: 'Actions',
+                                                        accessor: 'actions',
+                                                        filterable: false,
+                                                        Cell: row => (
+                                                            <div className="d-block w-100 text-center">
+                                                                <Button outline className="mb-2 mr-2 btn-pill" color="success"
+                                                                        onClick={(e) => {
+                                                                            toggleEdit(row.original.id)
+                                                                        }}><i className="lnr-pencil"> </i>Edit</Button>
+                                                                <Button outline className="mb-2 mr-2 btn-pill" color="danger"
+                                                                        onClick={(e) => {
+                                                                            showDeleteNotif(row.original.id)
+                                                                        }}><i className="lnr-trash"> </i>Delete</Button>
+                                                            </div>
+                                                        )
+                                                    }
+                                                ]
+                                            }]}
+                                        defaultPageSize={15}
+                                        className="-striped -highlight"
+                                    />
+                                </CardBody>
+                            </div>
+                        </Card>
                     </div>
-                </Card>
+                </div>
+
+                {/*<Card className="main-card m-5" style={{paddingTop:100}}>*/}
+                {/*    <div className="mb-3">*/}
+                {/*        <CardHeader>*/}
+                {/*            <div className="btn-actions-pane-right">*/}
+                {/*            <Button outline className="mb-2 mr-2 btn-pill" color="primary" onClick={(e) => {*/}
+                {/*                toggleAdd()*/}
+                {/*            }}><i className="lnr-plus-circle"> </i>Add</Button>*/}
+                {/*            </div>*/}
+                {/*        </CardHeader>*/}
+
+                {/*        <CardBody>*/}
+                {/*            <ReactTable*/}
+                {/*                data={productData}*/}
+                {/*                filterable*/}
+                {/*                columns={[{*/}
+                {/*                    columns: [*/}
+                {/*                        {*/}
+                {/*                            Header: 'Book',*/}
+                {/*                            accessor: 'judulBuku'*/}
+                {/*                        },*/}
+                {/*                        {*/}
+                {/*                            Header: 'Stock',*/}
+                {/*                            accessor: 'stokBuku'*/}
+                {/*                        },*/}
+                {/*                        {*/}
+                {/*                            Header: 'Price',*/}
+                {/*                            accessor: 'hargaBuku'*/}
+                {/*                        },*/}
+                {/*                    ]*/}
+                {/*                },*/}
+                {/*                    {*/}
+                {/*                        columns: [*/}
+
+                {/*                            {*/}
+                {/*                                Header: 'Actions',*/}
+                {/*                                accessor: 'actions',*/}
+                {/*                                filterable: false,*/}
+                {/*                                Cell: row => (*/}
+                {/*                                    <div className="d-block w-100 text-center">*/}
+                {/*                                        <Button outline className="mb-2 mr-2 btn-pill" color="success"*/}
+                {/*                                                onClick={(e) => {*/}
+                {/*                                                    toggleEdit(row.original.id)*/}
+                {/*                                                }}><i className="lnr-pencil"> </i>Edit</Button>*/}
+                {/*                                        <Button outline className="mb-2 mr-2 btn-pill" color="danger"*/}
+                {/*                                                onClick={(e) => {*/}
+                {/*                                                    showDeleteNotif(row.original.id)*/}
+                {/*                                                }}><i className="lnr-trash"> </i>Delete</Button>*/}
+                {/*                                    </div>*/}
+                {/*                                )*/}
+                {/*                            }*/}
+                {/*                        ]*/}
+                {/*                    }]}*/}
+                {/*                defaultPageSize={15}*/}
+                {/*                className="-striped -highlight"*/}
+                {/*            />*/}
+                {/*        </CardBody>*/}
+                {/*    </div>*/}
+                {/*</Card>*/}
 
                 <EditProduct toggle={() => {
                     toggleEdit()

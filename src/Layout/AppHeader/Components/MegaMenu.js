@@ -7,10 +7,6 @@ import {
 } from 'reactstrap';
 
 import PerfectScrollbar from 'react-perfect-scrollbar';
-
-import bg2 from '../../../assets/utils/images/dropdown-header/abstract2.jpg';
-import bg3 from '../../../assets/utils/images/dropdown-header/abstract3.jpg';
-
 import {
     faAngleDown,
 
@@ -74,7 +70,6 @@ class MegaMenu extends React.Component {
                                     <Link to="/novel">
                                         <DropdownItem>Novel</DropdownItem>
                                     </Link>
-                                    {/*<DropdownItem>Novel</DropdownItem>*/}
 
                                 </PerfectScrollbar>
                             </div>
