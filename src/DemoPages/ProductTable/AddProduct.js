@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import axios from "axios";
 import {Button, Form, FormGroup, Input, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {IoIosSettings} from "react-icons/io";
@@ -59,7 +59,7 @@ const AddProduct = (props) => {
                         <ModalBody>
                             <Form>
                                 <FormGroup>
-                                    <Label>Judul Buku</Label>
+                                    <Label>Judul Buku </Label>
                                     <Input type="text" name="title" id="title"
                                            placeholder="Judul Buku" onChange={(e) => {
                                         setTitle(e.target.value)
@@ -69,7 +69,7 @@ const AddProduct = (props) => {
                                     <Input type="text" name="tahun" id="tahun"
                                            placeholder="Tahun Terbit" onChange={(e) => {
                                         setYear(e.target.value)
-                                    }}/>
+                                     }}/>
                                 </FormGroup>
                                 <FormGroup>
                                     <Input type="text" name="namaPengarang" id="pengarang"

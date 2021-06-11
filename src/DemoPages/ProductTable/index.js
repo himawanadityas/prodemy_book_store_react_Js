@@ -6,11 +6,7 @@ import {
     Card, CardBody,
     UncontrolledButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle, Button, CardHeader
 } from 'reactstrap';
-import avatar2 from "../../assets/utils/images/avatars/2.jpg";
 
-// import {GetData} from "./DataProductTable/dataData"
-
-import SearchBox from "../../Layout/AppHeader/Components/SearchBox";
 import PageTitle from "../../Layout/AppMain/PageTitle";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import Header from "../../Layout/AppHeader";

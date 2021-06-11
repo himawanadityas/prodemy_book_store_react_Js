@@ -133,12 +133,6 @@ function getTabs() {
 
 const HeaderDots = () => {
     const [modal, setModal] = useState()
-//     const [cartBadge, setCartBadge] = useState(0)
-//
-// const quantityBadge = (value) => {
-//         setCartBadge(value)
-//         console.log("cart badge header dot >",value)}
-
 
     return (
         <Fragment>
@@ -146,7 +140,6 @@ const HeaderDots = () => {
                 <div className="icon-wrapper icon-wrapper-alt" onClick={() => {setModal(!modal)}}>
                     <div className="icon-wrapper-bg"/>
                     <IoIosCart color="#985534" fontSize="23px"/>
-                    {/*<span className="badge badge-pill badge-warning">{cartBadge}</span>*/}
                 </div>
                 <div className="icon-wrapper icon-wrapper-alt">
                     <div className="icon-wrapper-bg"/>
