@@ -64,7 +64,7 @@ const Homepage = () => {
             setRecommendation(res.data)
             console.log(res.data)
         }).catch()
-        axios.get('http://localhost:1212/api/best-seller').then(res => {
+        axios.get('http://localhost:1212/api/book/best-seller').then(res => {
             setBestSeller(res.data)
             console.log(res.data)
         }).catch()
